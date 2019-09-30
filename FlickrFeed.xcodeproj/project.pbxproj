@@ -7,10 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		013FDC53234298DF00A24022 /* EasyNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; };
+		013FDC5A234298DF00A24022 /* EasyNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */; };
+		013FDC5C234298DF00A24022 /* EasyNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 013FDC4C234298DF00A24022 /* EasyNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		013FDC5F234298DF00A24022 /* EasyNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; };
+		013FDC60234298DF00A24022 /* EasyNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		013FDC7B234298F400A24022 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6A234298F400A24022 /* NetworkOperation.swift */; };
+		013FDC7C234298F400A24022 /* URLRequest+Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6B234298F400A24022 /* URLRequest+Encoding.swift */; };
+		013FDC7D234298F400A24022 /* NetworkRequestBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6C234298F400A24022 /* NetworkRequestBehaviour.swift */; };
+		013FDC7E234298F400A24022 /* RequestPreparer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6D234298F400A24022 /* RequestPreparer.swift */; };
+		013FDC7F234298F400A24022 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6E234298F400A24022 /* Response.swift */; };
+		013FDC80234298F400A24022 /* NetworkDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC6F234298F400A24022 /* NetworkDispatcher.swift */; };
+		013FDC81234298F400A24022 /* NetworkBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC71234298F400A24022 /* NetworkBuilder.swift */; };
+		013FDC82234298F400A24022 /* NetworkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC73234298F400A24022 /* NetworkTask.swift */; };
+		013FDC83234298F400A24022 /* URLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC74234298F400A24022 /* URLEncoder.swift */; };
+		013FDC84234298F400A24022 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC75234298F400A24022 /* EndPoint.swift */; };
+		013FDC85234298F400A24022 /* StatusBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC77234298F400A24022 /* StatusBarLoader.swift */; };
+		013FDC86234298F400A24022 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC78234298F400A24022 /* NetworkLogger.swift */; };
+		013FDC87234298F400A24022 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC7A234298F400A24022 /* NetworkError.swift */; };
 		01DFCA5E233FB35D00DECB81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */; };
 		01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */; };
-		01DFCA62233FB35D00DECB81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA61233FB35D00DECB81 /* ViewController.swift */; };
-		01DFCA65233FB35D00DECB81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA63233FB35D00DECB81 /* Main.storyboard */; };
 		01DFCA67233FB35F00DECB81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA66233FB35F00DECB81 /* Assets.xcassets */; };
 		01DFCA6A233FB35F00DECB81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */; };
 		01DFCA75233FB35F00DECB81 /* FlickrFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA74233FB35F00DECB81 /* FlickrFeedTests.swift */; };
@@ -18,6 +34,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		013FDC54234298DF00A24022 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01DFCA52233FB35D00DECB81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 013FDC49234298DF00A24022;
+			remoteInfo = EasyNetworking;
+		};
+		013FDC56234298DF00A24022 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01DFCA52233FB35D00DECB81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01DFCA59233FB35D00DECB81;
+			remoteInfo = FlickrFeed;
+		};
+		013FDC5D234298DF00A24022 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01DFCA52233FB35D00DECB81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 013FDC49234298DF00A24022;
+			remoteInfo = EasyNetworking;
+		};
 		01DFCA71233FB35F00DECB81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 01DFCA52233FB35D00DECB81 /* Project object */;
@@ -34,12 +71,43 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		013FDC64234298DF00A24022 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				013FDC60234298DF00A24022 /* EasyNetworking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		013FDC4A234298DF00A24022 /* EasyNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		013FDC4C234298DF00A24022 /* EasyNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyNetworking.h; sourceTree = "<group>"; };
+		013FDC4D234298DF00A24022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013FDC52234298DF00A24022 /* EasyNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyNetworkingTests.swift; sourceTree = "<group>"; };
+		013FDC5B234298DF00A24022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		013FDC6A234298F400A24022 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		013FDC6B234298F400A24022 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
+		013FDC6C234298F400A24022 /* NetworkRequestBehaviour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestBehaviour.swift; sourceTree = "<group>"; };
+		013FDC6D234298F400A24022 /* RequestPreparer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPreparer.swift; sourceTree = "<group>"; };
+		013FDC6E234298F400A24022 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		013FDC6F234298F400A24022 /* NetworkDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkDispatcher.swift; sourceTree = "<group>"; };
+		013FDC71234298F400A24022 /* NetworkBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkBuilder.swift; sourceTree = "<group>"; };
+		013FDC73234298F400A24022 /* NetworkTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTask.swift; sourceTree = "<group>"; };
+		013FDC74234298F400A24022 /* URLEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLEncoder.swift; sourceTree = "<group>"; };
+		013FDC75234298F400A24022 /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		013FDC77234298F400A24022 /* StatusBarLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarLoader.swift; sourceTree = "<group>"; };
+		013FDC78234298F400A24022 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		013FDC7A234298F400A24022 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		01DFCA5A233FB35D00DECB81 /* FlickrFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		01DFCA61233FB35D00DECB81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		01DFCA64233FB35D00DECB81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		01DFCA66233FB35F00DECB81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01DFCA69233FB35F00DECB81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01DFCA6B233FB35F00DECB81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,10 +120,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		013FDC47234298DF00A24022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		013FDC4F234298DF00A24022 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013FDC53234298DF00A24022 /* EasyNetworking.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01DFCA57233FB35D00DECB81 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				013FDC5F234298DF00A24022 /* EasyNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +160,190 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013FDC4B234298DF00A24022 /* EasyNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC68234298F400A24022 /* src */,
+				013FDC4C234298DF00A24022 /* EasyNetworking.h */,
+				013FDC4D234298DF00A24022 /* Info.plist */,
+			);
+			path = EasyNetworking;
+			sourceTree = "<group>";
+		};
+		013FDC58234298DF00A24022 /* EasyNetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */,
+				013FDC5B234298DF00A24022 /* Info.plist */,
+			);
+			path = EasyNetworkingTests;
+			sourceTree = "<group>";
+		};
+		013FDC68234298F400A24022 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC69234298F400A24022 /* Core */,
+				013FDC70234298F400A24022 /* NetworkBuilder */,
+				013FDC72234298F400A24022 /* EndPoint */,
+				013FDC76234298F400A24022 /* Behaviour */,
+				013FDC79234298F400A24022 /* Error */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		013FDC69234298F400A24022 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC6A234298F400A24022 /* NetworkOperation.swift */,
+				013FDC6B234298F400A24022 /* URLRequest+Encoding.swift */,
+				013FDC6C234298F400A24022 /* NetworkRequestBehaviour.swift */,
+				013FDC6D234298F400A24022 /* RequestPreparer.swift */,
+				013FDC6E234298F400A24022 /* Response.swift */,
+				013FDC6F234298F400A24022 /* NetworkDispatcher.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		013FDC70234298F400A24022 /* NetworkBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC71234298F400A24022 /* NetworkBuilder.swift */,
+			);
+			path = NetworkBuilder;
+			sourceTree = "<group>";
+		};
+		013FDC72234298F400A24022 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC73234298F400A24022 /* NetworkTask.swift */,
+				013FDC74234298F400A24022 /* URLEncoder.swift */,
+				013FDC75234298F400A24022 /* EndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		013FDC76234298F400A24022 /* Behaviour */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC77234298F400A24022 /* StatusBarLoader.swift */,
+				013FDC78234298F400A24022 /* NetworkLogger.swift */,
+			);
+			path = Behaviour;
+			sourceTree = "<group>";
+		};
+		013FDC79234298F400A24022 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC7A234298F400A24022 /* NetworkError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		013FDC882342995A00A24022 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */,
+				01DFCA66233FB35F00DECB81 /* Assets.xcassets */,
+				01DFCA6B233FB35F00DECB81 /* Info.plist */,
+				01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */,
+				01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		013FDC8923429A4D00A24022 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC8B23429AC800A24022 /* PhotoDetails */,
+				013FDC8A23429AAD00A24022 /* FlickrSearch */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		013FDC8A23429AAD00A24022 /* FlickrSearch */ = {
+			isa = PBXGroup;
+			children = (
+				013FDC9123429B3000A24022 /* ModuleBuilder */,
+				013FDC9023429B2B00A24022 /* Router */,
+				013FDC8F23429B2600A24022 /* Entity */,
+				013FDC8E23429B2000A24022 /* Presenter */,
+				013FDC8D23429B1300A24022 /* Interactor */,
+				013FDC8C23429AD100A24022 /* View */,
+			);
+			path = FlickrSearch;
+			sourceTree = "<group>";
+		};
+		013FDC8B23429AC800A24022 /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PhotoDetails;
+			sourceTree = "<group>";
+		};
+		013FDC8C23429AD100A24022 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		013FDC8D23429B1300A24022 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		013FDC8E23429B2000A24022 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		013FDC8F23429B2600A24022 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		013FDC9023429B2B00A24022 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		013FDC9123429B3000A24022 /* ModuleBuilder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModuleBuilder;
+			sourceTree = "<group>";
+		};
+		013FDC9223429B4D00A24022 /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		013FDC9323429B5500A24022 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		01DFCA51233FB35D00DECB81 = {
 			isa = PBXGroup;
 			children = (
 				01DFCA5C233FB35D00DECB81 /* FlickrFeed */,
 				01DFCA73233FB35F00DECB81 /* FlickrFeedTests */,
 				01DFCA7E233FB35F00DECB81 /* FlickrFeedUITests */,
+				013FDC4B234298DF00A24022 /* EasyNetworking */,
+				013FDC58234298DF00A24022 /* EasyNetworkingTests */,
 				01DFCA5B233FB35D00DECB81 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +354,8 @@
 				01DFCA5A233FB35D00DECB81 /* FlickrFeed.app */,
 				01DFCA70233FB35F00DECB81 /* FlickrFeedTests.xctest */,
 				01DFCA7B233FB35F00DECB81 /* FlickrFeedUITests.xctest */,
+				013FDC4A234298DF00A24022 /* EasyNetworking.framework */,
+				013FDC52234298DF00A24022 /* EasyNetworkingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,13 +363,10 @@
 		01DFCA5C233FB35D00DECB81 /* FlickrFeed */ = {
 			isa = PBXGroup;
 			children = (
-				01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */,
-				01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */,
-				01DFCA61233FB35D00DECB81 /* ViewController.swift */,
-				01DFCA63233FB35D00DECB81 /* Main.storyboard */,
-				01DFCA66233FB35F00DECB81 /* Assets.xcassets */,
-				01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */,
-				01DFCA6B233FB35F00DECB81 /* Info.plist */,
+				013FDC9323429B5500A24022 /* Constants */,
+				013FDC9223429B4D00A24022 /* API */,
+				013FDC8923429A4D00A24022 /* Module */,
+				013FDC882342995A00A24022 /* SupportFiles */,
 			);
 			path = FlickrFeed;
 			sourceTree = "<group>";
@@ -130,7 +391,55 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		013FDC45234298DF00A24022 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013FDC5C234298DF00A24022 /* EasyNetworking.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		013FDC49234298DF00A24022 /* EasyNetworking */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 013FDC61234298DF00A24022 /* Build configuration list for PBXNativeTarget "EasyNetworking" */;
+			buildPhases = (
+				013FDC45234298DF00A24022 /* Headers */,
+				013FDC46234298DF00A24022 /* Sources */,
+				013FDC47234298DF00A24022 /* Frameworks */,
+				013FDC48234298DF00A24022 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EasyNetworking;
+			productName = EasyNetworking;
+			productReference = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		013FDC51234298DF00A24022 /* EasyNetworkingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 013FDC65234298DF00A24022 /* Build configuration list for PBXNativeTarget "EasyNetworkingTests" */;
+			buildPhases = (
+				013FDC4E234298DF00A24022 /* Sources */,
+				013FDC4F234298DF00A24022 /* Frameworks */,
+				013FDC50234298DF00A24022 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				013FDC55234298DF00A24022 /* PBXTargetDependency */,
+				013FDC57234298DF00A24022 /* PBXTargetDependency */,
+			);
+			name = EasyNetworkingTests;
+			productName = EasyNetworkingTests;
+			productReference = 013FDC52234298DF00A24022 /* EasyNetworkingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		01DFCA59233FB35D00DECB81 /* FlickrFeed */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 01DFCA84233FB35F00DECB81 /* Build configuration list for PBXNativeTarget "FlickrFeed" */;
@@ -138,10 +447,12 @@
 				01DFCA56233FB35D00DECB81 /* Sources */,
 				01DFCA57233FB35D00DECB81 /* Frameworks */,
 				01DFCA58233FB35D00DECB81 /* Resources */,
+				013FDC64234298DF00A24022 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				013FDC5E234298DF00A24022 /* PBXTargetDependency */,
 			);
 			name = FlickrFeed;
 			productName = FlickrFeed;
@@ -194,6 +505,13 @@
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Sudipta Sahoo";
 				TargetAttributes = {
+					013FDC49234298DF00A24022 = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					013FDC51234298DF00A24022 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 01DFCA59233FB35D00DECB81;
+					};
 					01DFCA59233FB35D00DECB81 = {
 						CreatedOnToolsVersion = 11.0;
 					};
@@ -223,18 +541,33 @@
 				01DFCA59233FB35D00DECB81 /* FlickrFeed */,
 				01DFCA6F233FB35F00DECB81 /* FlickrFeedTests */,
 				01DFCA7A233FB35F00DECB81 /* FlickrFeedUITests */,
+				013FDC49234298DF00A24022 /* EasyNetworking */,
+				013FDC51234298DF00A24022 /* EasyNetworkingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		013FDC48234298DF00A24022 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		013FDC50234298DF00A24022 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01DFCA58233FB35D00DECB81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				01DFCA6A233FB35F00DECB81 /* LaunchScreen.storyboard in Resources */,
 				01DFCA67233FB35F00DECB81 /* Assets.xcassets in Resources */,
-				01DFCA65233FB35D00DECB81 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,11 +588,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		013FDC46234298DF00A24022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013FDC86234298F400A24022 /* NetworkLogger.swift in Sources */,
+				013FDC7D234298F400A24022 /* NetworkRequestBehaviour.swift in Sources */,
+				013FDC82234298F400A24022 /* NetworkTask.swift in Sources */,
+				013FDC84234298F400A24022 /* EndPoint.swift in Sources */,
+				013FDC81234298F400A24022 /* NetworkBuilder.swift in Sources */,
+				013FDC83234298F400A24022 /* URLEncoder.swift in Sources */,
+				013FDC7C234298F400A24022 /* URLRequest+Encoding.swift in Sources */,
+				013FDC7E234298F400A24022 /* RequestPreparer.swift in Sources */,
+				013FDC80234298F400A24022 /* NetworkDispatcher.swift in Sources */,
+				013FDC7B234298F400A24022 /* NetworkOperation.swift in Sources */,
+				013FDC87234298F400A24022 /* NetworkError.swift in Sources */,
+				013FDC7F234298F400A24022 /* Response.swift in Sources */,
+				013FDC85234298F400A24022 /* StatusBarLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		013FDC4E234298DF00A24022 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				013FDC5A234298DF00A24022 /* EasyNetworkingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01DFCA56233FB35D00DECB81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01DFCA62233FB35D00DECB81 /* ViewController.swift in Sources */,
 				01DFCA5E233FB35D00DECB81 /* AppDelegate.swift in Sources */,
 				01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */,
 			);
@@ -284,6 +644,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		013FDC55234298DF00A24022 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 013FDC49234298DF00A24022 /* EasyNetworking */;
+			targetProxy = 013FDC54234298DF00A24022 /* PBXContainerItemProxy */;
+		};
+		013FDC57234298DF00A24022 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01DFCA59233FB35D00DECB81 /* FlickrFeed */;
+			targetProxy = 013FDC56234298DF00A24022 /* PBXContainerItemProxy */;
+		};
+		013FDC5E234298DF00A24022 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 013FDC49234298DF00A24022 /* EasyNetworking */;
+			targetProxy = 013FDC5D234298DF00A24022 /* PBXContainerItemProxy */;
+		};
 		01DFCA72233FB35F00DECB81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 01DFCA59233FB35D00DECB81 /* FlickrFeed */;
@@ -297,14 +672,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		01DFCA63233FB35D00DECB81 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				01DFCA64233FB35D00DECB81 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -316,6 +683,102 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		013FDC62234298DF00A24022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 298428699Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EasyNetworking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudiptasahoo.EasyNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		013FDC63234298DF00A24022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 298428699Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EasyNetworking/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudiptasahoo.EasyNetworking;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		013FDC66234298DF00A24022 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 298428699Q;
+				INFOPLIST_FILE = EasyNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudiptasahoo.EasyNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+			};
+			name = Debug;
+		};
+		013FDC67234298DF00A24022 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 298428699Q;
+				INFOPLIST_FILE = EasyNetworkingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sudiptasahoo.EasyNetworkingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+			};
+			name = Release;
+		};
 		01DFCA82233FB35F00DECB81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -433,10 +896,12 @@
 		01DFCA85233FB35F00DECB81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
-				INFOPLIST_FILE = FlickrFeed/Info.plist;
+				INFOPLIST_FILE = FlickrFeed/SupportFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,10 +916,12 @@
 		01DFCA86233FB35F00DECB81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
-				INFOPLIST_FILE = FlickrFeed/Info.plist;
+				INFOPLIST_FILE = FlickrFeed/SupportFiles/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -553,6 +1020,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		013FDC61234298DF00A24022 /* Build configuration list for PBXNativeTarget "EasyNetworking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				013FDC62234298DF00A24022 /* Debug */,
+				013FDC63234298DF00A24022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		013FDC65234298DF00A24022 /* Build configuration list for PBXNativeTarget "EasyNetworkingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				013FDC66234298DF00A24022 /* Debug */,
+				013FDC67234298DF00A24022 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		01DFCA55233FB35D00DECB81 /* Build configuration list for PBXProject "FlickrFeed" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
