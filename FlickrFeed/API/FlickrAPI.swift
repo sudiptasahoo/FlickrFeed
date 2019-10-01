@@ -30,7 +30,7 @@ enum FlickrAPI : EndPoint {
     
     var task: HTTPTask {
         switch self {
-        case .search(let text, let page ):
+        case .search(let text, let page):
             
             let params = [
                 "method": FlickrMethods.search,

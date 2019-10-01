@@ -18,9 +18,9 @@ struct FlickrResult : Decodable {
     
     var page: Int
     var pages: Int
-    var perPages: Int
+    var perpage: Int
     var total: String
-    var photo: FlickrPhoto
+    var photo: [FlickrPhoto]
 }
 
 struct FlickrPhoto : Decodable {
