@@ -21,6 +21,10 @@ protocol SearchViewInput: class {
     /// Refreshes the search screen UI
     /// - Parameter result: result state of the Flickr Search
     func refreshUI(using result: SearchResultState)
+    
+    /// Insert Photos at specified index path of collection view
+    /// - Parameter indexPaths: list of index paths to be inserted at
+    func insertPhotos(at indexPaths: [IndexPath])
 }
 
 //MARK: Presenter
@@ -78,3 +82,7 @@ protocol SearchRouterInput: class {
     func routeToPhotoDetails(with photo: FlickrPhoto)
 }
 
+//MARK: SearchModuleBuilder
+protocol SearchBuilder {
+    static func buildModule() -> SearchViewController
+}

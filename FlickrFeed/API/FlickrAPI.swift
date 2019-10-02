@@ -43,7 +43,7 @@ enum FlickrAPI : EndPoint {
                 "per_page": Defaults.defaultPageSize
                 ] as [String : AnyHashable]
             
-            return .requestBodyParameters(params)
+            return .requestQueryParameters(params)
         }
     }
     

@@ -36,10 +36,16 @@ struct SearchViewModel {
         return photos.count
     }
     
-    func imageUrlAt(_ index: Int) -> URL {
+    func imageUrl(at index: Int) -> URL {
         guard !photos.isEmpty else {
             fatalError("No photos available")
         }
         return photos[index]
+    }
+    
+    mutating func reset() {
+        photos = []
+        currentPage = 0
+        totalPage = 0
     }
 }

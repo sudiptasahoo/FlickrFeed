@@ -47,7 +47,7 @@ final class SearchPresenterTests: XCTestCase {
         XCTAssertTrue(presenter.flickrSearchSuccess)
         XCTAssertTrue(view.showFlickrImages)
         XCTAssertNotNil(presenter.searchViewModel)
-        XCTAssertTrue(presenter.searchViewModel.photos.count == 2)
+        XCTAssertTrue(presenter.searchViewModel.photos.count == 3)
     }
     
     func testDidSelectPhotoCall() {

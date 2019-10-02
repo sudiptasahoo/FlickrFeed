@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 //MARK: Networking API Constants
 enum APIConstants {
@@ -21,4 +22,18 @@ enum FlickrMethods {
 //MARK: App Defaults
 enum Defaults {
     static let defaultPageSize: Int = 20
+    static let firstPage: Int = 1
+    static let defaultCellSpacing: CGFloat = 1.0
+    static let gridNoOfColumns: CGFloat = 3.0
+}
+
+//MARK: Copies
+enum Strings {
+    static let searchPlaceholder = "Search Photos"
+    static let searchVcTitle = "Flickr Feed"
+}
+
+//MARK: Metrics
+enum Metrics {
+    static let screenWidth = UIScreen.main.bounds.width
 }

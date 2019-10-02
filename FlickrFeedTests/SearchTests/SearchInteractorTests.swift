@@ -33,13 +33,13 @@ final class FlickrSearchInteractorTests: XCTestCase {
     func testFetchFlickrPhotos() {
         interactor.fetchPhotos(with: "car", page: 1)
         XCTAssertTrue(presenter.flickrSuccessCalled)
-        XCTAssertTrue(interactor.loadPhotosCalled)
+        XCTAssertTrue(interactor.loadPhotosSuccess)
     }
     
     func testFetchFlickrPhotosErrorResponse() {
         failInteractor.fetchPhotos(with: "car", page: 1)
-        XCTAssertFalse(presenter.flickrSuccessCalled)
-        XCTAssertTrue(interactor.loadPhotosCalled)
+        XCTAssertTrue(presenter.flickrFailureCalled)
+        XCTAssertTrue(failInteractor.loadPhotosFailure)
     }
 }
 
@@ -47,7 +47,8 @@ final class FlickrSearchInteractorTests: XCTestCase {
 final class SearchInteractorMock: SearchInteractorInput {
     
     weak var presenter: SearchInteractorOutput?
-    var loadPhotosCalled: Bool = false
+    var loadPhotosSuccess: Bool = false
+    var loadPhotosFailure: Bool = false
     var network: NetworkService?
     
     init(presenter: SearchInteractorOutput, network: NetworkService) {
@@ -59,11 +60,11 @@ final class SearchInteractorMock: SearchInteractorInput {
         network?.request(FlickrAPI.search(text: searchTerm, page: page), completion: { (result: Result<FlickrFeed, Error>) in
             switch result {
             case let .success(flickrPhotos):
-                self.loadPhotosCalled = true
+                self.loadPhotosSuccess = true
                 self.presenter?.fetchPhotoCompleted(with: .success(flickrPhotos))
             case let .failure(error):
+                self.loadPhotosFailure = true
                 self.presenter?.fetchPhotoCompleted(with: .failure(error))
-                self.loadPhotosCalled = true
             }
         })
     }
@@ -74,6 +75,7 @@ final class SearchInteractorMock: SearchInteractorInput {
 final class SearchPresenterInputMock: SearchInteractorOutput {
     
     var flickrSuccessCalled = false
+    var flickrFailureCalled = false
 
     func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
         
@@ -83,7 +85,7 @@ final class SearchPresenterInputMock: SearchInteractorOutput {
             XCTAssertFalse(feed.photos.photo.isEmpty)
             
         default:
-            flickrSuccessCalled = false
+            flickrFailureCalled = true
         }
     }
 }
