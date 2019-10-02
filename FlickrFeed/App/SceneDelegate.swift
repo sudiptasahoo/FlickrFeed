@@ -23,7 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let win = UIWindow(windowScene: scene)
         AppRouter().configureRootViewController(inWindow: win)
         window = win
-       
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

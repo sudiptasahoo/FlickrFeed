@@ -25,12 +25,19 @@ enum Defaults {
     static let firstPage: Int = 1
     static let defaultCellSpacing: CGFloat = 1.0
     static let gridNoOfColumns: CGFloat = 3.0
+    static let defaultPageNum: Int = 0
+    static let defaultTotalCount: Int = 0
 }
 
 //MARK: Copies
 enum Strings {
     static let searchPlaceholder = "Search Photos"
     static let searchVcTitle = "Flickr Feed"
+    static let error = "Error Occurred"
+    static let ok = "OK"
+    static let retry = "RETRY"
+    static let cancel = "CANCEL"
+    static let defaultBlackListText = "Type to start ..."
 }
 
 //MARK: Metrics

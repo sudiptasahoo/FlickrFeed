@@ -100,11 +100,11 @@ final class SearchPresenterMock: SearchModuleInput, SearchViewOutput, SearchInte
             let photoUrlList = fetchPhotoUrl(with: flickrFeed.photos.photo)
             let viewModel = SearchViewModel(photos: photoUrlList, totalPage: flickrFeed.photos.pages, currentPage: flickrFeed.photos.page)
             self.searchViewModel = viewModel
-            view?.refreshUI(using: .rendering)
+            view?.updateViewState(with: .rendering)
             
         case .failure(let error):
             searchPhotoFailure = true
-            view?.refreshUI(using: .error(message: error.localizedDescription))
+            view?.updateViewState(with: .error(message: error.localizedDescription))
         }
     }
     
@@ -130,7 +130,7 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func refreshUI(using result: SearchResultState) {
+    func updateViewState(with result: SearchResultState) {
         
         switch result {
         case .rendering:
@@ -144,6 +144,10 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
         case .loading:
             showLoader = true
         }
+    }
+    
+    func insertPhotos(at indexPaths: [IndexPath]) {
+        //TODO
     }
 }
 

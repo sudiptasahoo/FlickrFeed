@@ -1,5 +1,5 @@
 //
-//  UIImage+Cache.swift
+//  UIImageView+Cache.swift
 //  FlickrFeed
 //
 //  Created by Sudipta Sahoo on 02/10/19.
@@ -23,11 +23,11 @@ extension UIImageView{
     func setImage(_ path: URL?, placeHolderImage: UIImage? = nil){
         
         guard let path = path else {
-            self.ss_setImage(nil, placeHolderImage)
+            self.easy_setImage(nil, placeHolderImage)
             return
         }
         
-        self.ss_setImage(path, placeHolderImage)
+        self.easy_setImage(path, placeHolderImage)
     }
 
 }

@@ -11,19 +11,48 @@ import UIKit
 
 extension UIView {
     
-    func showLoader() {
-        let activityIndicator = UIActivityIndicatorView(style: .gray)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        addSubview(activityIndicator)
-        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    var loaderTag: Int { return 783648 }
+
+    func startLoader(loadingText: String? = nil) {
+        
+        DispatchQueue.main.async {
+            let blurEffect = UIBlurEffect(style: .dark)
+            let activityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
+            activityIndicatorView.center = self.center
+            let loaderView = UIVisualEffectView(frame: self.frame)
+            loaderView.tag = self.loaderTag
+            loaderView.effect = blurEffect
+            activityIndicatorView.startAnimating()
+            loaderView.contentView.addSubview(activityIndicatorView)
+            
+            if let _loadingText = loadingText {
+                let label = UILabel()
+                label.text = _loadingText
+                
+                label.translatesAutoresizingMaskIntoConstraints = false
+                label.font = UIFont.systemFont(ofSize: 20)
+                label.numberOfLines = 0
+                label.textAlignment = .center
+                loaderView.contentView.addSubview(label)
+                
+                NSLayoutConstraint.activate([
+                    label.leadingAnchor.constraint(equalTo: loaderView.contentView.leadingAnchor, constant: 150),
+                    label.trailingAnchor.constraint(equalTo: loaderView.contentView.trailingAnchor, constant: -150),
+                    label.topAnchor.constraint(equalTo: activityIndicatorView.bottomAnchor, constant: 40),
+                    ])
+            }
+            
+            self.addSubview(loaderView)
+        }
     }
     
-    func hideLoader() {
-        guard let spinner = self.subviews.last as? UIActivityIndicatorView else { return }
-        spinner.stopAnimating()
-        spinner.removeFromSuperview()
+    
+    func stopLoader(){
+        DispatchQueue.main.async {
+            self.subviews.filter(
+                { $0.tag == self.loaderTag}).forEach {
+                $0.removeFromSuperview()
+            }
+        }
     }
 }

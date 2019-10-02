@@ -8,12 +8,7 @@
 
 import Foundation
 import UIKit
-
-enum ViewState {
-    case none
-    case loading
-    case content
-}
+import ImageCache
 
 final class SearchViewController: UIViewController {
     
@@ -30,27 +25,27 @@ final class SearchViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var searchBar : UISearchBar = {
-        let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 30))
-        searchBar.searchBarStyle = UISearchBar.Style.prominent
-        searchBar.placeholder = Strings.searchPlaceholder
-        searchBar.sizeToFit()
-        searchBar.isTranslucent = false
-        searchBar.backgroundImage = UIImage()
-        searchBar.delegate = self
-        return searchBar
+    lazy var startupLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .orange
+        lbl.font = UIFont.systemFont(ofSize: 20)
+        lbl.text = Strings.defaultBlackListText
+        lbl.textAlignment = .center
+        return lbl
     }()
     
     lazy var searchController: UISearchController = {
-        let controller = UISearchController()
+        let searchVC = SearchResultController()
+        searchVC.searchDelegate = self
+        let controller = UISearchController(searchResultsController: searchVC)
         if #available(iOS 11, *) {
             controller.obscuresBackgroundDuringPresentation = true
         } else {
             controller.dimsBackgroundDuringPresentation = true
         }
         controller.searchResultsUpdater = nil
-        controller.searchBar.delegate = self
         controller.searchBar.placeholder = Strings.searchPlaceholder
+        controller.searchBar.delegate = searchVC
         return controller
     }()
     
@@ -68,7 +63,11 @@ final class SearchViewController: UIViewController {
     
     lazy var collectionView : UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: collectionViewLayout)
-        collectionView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            collectionView.backgroundColor = .systemBackground
+        } else {
+            collectionView.backgroundColor = .black
+        }
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -83,49 +82,93 @@ final class SearchViewController: UIViewController {
         setupViews()
         themeViews()
         setupConstraints()
-        presenter?.fetchPhotos(with: "car")
+        refreshUI()
     }
     
     //MARK: Private Methods
     
     //Configure Views and subviews
     private func setupViews() {
-        self.title = Strings.searchVcTitle
+        automaticallyAdjustsScrollViewInsets = false
+        navigationItem.title = Strings.searchVcTitle
         view.addSubview(collectionView)
+        if #available(iOS 11.0, *) {
+            collectionView.contentInsetAdjustmentBehavior = .never
+        }
         configureSearchController()
     }
     
     //MARK: configureSearchController
     private func configureSearchController() {
-        #warning("Not wokring on iOS13")
+
         if #available(iOS 11, *) {
             navigationItem.searchController = searchController
             navigationController?.navigationBar.prefersLargeTitles = true
+            navigationItem.hidesSearchBarWhenScrolling = false
         } else {
             navigationItem.titleView = searchController.searchBar
         }
-        definesPresentationContext = true
+        definesPresentationContext = false
     }
     
     //Apply Theming for views here
     private func themeViews() {
-        view.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .black
+        }
     }
-    
     
     //Apply AutoLayout Constraints
     private func setupConstraints() {
         collectionView.pinEdgesToSuperView()
     }
     
-    //MARK: SearchViewInput
 }
 
 extension SearchViewController: SearchViewInput {
     
-    func refreshUI(using result: SearchResultState) {
-        #warning("Reload only required cells")
+    //MARK: SearchViewInput
+    func updateViewState(with state: ViewState) {
+        viewState = state
+        refreshUI()
+    }
+    
+    fileprivate func refreshUI() {
+        
+        showHideCollectionView()
+        switch viewState {
+        case .none:
+            view.addSubview(startupLabel)
+            startupLabel.pinEdgesToSuperView()
+        case .content:
+            startupLabel.removeFromSuperview()
+        case .loading:
+            startupLabel.removeFromSuperview()
+        case .error(let message):
+            startupLabel.removeFromSuperview()
+            showAlert(title: Strings.error, message: message, retryAction: { [unowned self] in
+                self.presenter?.fetchMorePhotos()
+            })
+        }
+    }
+    
+    fileprivate func showHideCollectionView(){
+        guard let viewModel = presenter?.searchViewModel else { return }
+        if !viewModel.isEmpty {
+            collectionView.isHidden = false
+        } else {
+            collectionView.isHidden = true
+        }
+    }
+    
+    func resetView() {
         collectionView.reloadData()
+    }
+    
+    func insertPhotos(at indexPaths: [IndexPath]) {
+        collectionView.insertItems(at: indexPaths)
     }
 }
 
@@ -133,12 +176,10 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     //MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
         return presenter?.searchViewModel.photoCount ?? 0
     }
     
@@ -147,9 +188,9 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         guard let viewModel = presenter?.searchViewModel else {
             fatalError("CollectionView numberOfItems not configured correctly")
         }
-
+        
         let cell = collectionView.dequeueReusableCell(for: indexPath) as PhotoCollectionViewCell
-        cell.configure(imageURL: viewModel.imageUrl(at: indexPath.item))
+        cell.configure(imageURL: viewModel.imageUrl(at: indexPath.item), indexPath: indexPath)
         return cell
     }
     
@@ -167,7 +208,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         
-        if let _ = presenter?.searchViewModel, viewState == .loading {
+        if let viewModel = presenter?.searchViewModel, !viewModel.isEmpty, viewState == .loading {
             return CGSize(width: Metrics.screenWidth, height: 50)
         }
         return CGSize.zero
@@ -182,13 +223,15 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         presenter?.fetchMorePhotos()
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
         guard let viewModel = presenter?.searchViewModel else { return }
-        guard viewState != .loading, indexPath.row == (viewModel.photoCount - 1) else {
+        guard viewState != .loading, !viewModel.isEmpty else {
             return
         }
         let imageURL = viewModel.imageUrl(at: indexPath.row)
-        #warning("priority down for image download")
+        EasyImage.shared.changeDownloadPriority(for: imageURL)
     }
     
     //MARK: UICollectionViewDelegate
@@ -197,17 +240,19 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         presenter?.didSelectPhoto(at: indexPath.item)
         collectionView.deselectItem(at: indexPath, animated: false)
     }
-    
-    func insertPhotos(at indexPaths: [IndexPath]) {
-        collectionView.insertItems(at: indexPaths)
-    }
 }
 
-extension SearchViewController : UISearchBarDelegate {
+extension SearchViewController : SearchResultControllerDelegate {
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let searchTerm = searchBar.text, !searchTerm.isEmpty {
-            presenter?.fetchPhotos(with: searchTerm)
+    func didTapSearchBar(withText searchText: String) {
+        if !searchText.isEmpty {
+            
+            //Somehow the code in SearchResultController is not working on ios13
+            //Fallback code
+            searchController.isActive = false
+            searchController.searchBar.text = searchText
+            
+            presenter?.fetchPhotos(with: searchText)
         }
     }
 }

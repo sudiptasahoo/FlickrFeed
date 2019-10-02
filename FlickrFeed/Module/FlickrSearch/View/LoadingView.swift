@@ -21,6 +21,6 @@ final class LoadingView: UICollectionReusableView, ReusableView {
     }
     
     private func setup() {
-        showLoader()
+        startLoader()
     }
 }

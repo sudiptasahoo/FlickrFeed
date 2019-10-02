@@ -15,13 +15,11 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
     weak var view: SearchViewInput?
     var router: SearchRouterInput!
     var interactor: SearchInteractorInput!
-    
-    #warning("Verify")
     var searchTerm: String = ""
     
     //MARK: Initialization
     init() {
-        searchViewModel = SearchViewModel(photos: [], totalPage: 0, currentPage: 0)
+        searchViewModel = SearchViewModel(photos: [], totalPage: Defaults.defaultTotalCount, currentPage: Defaults.defaultPageNum)
     }
     
     //MARK: SearchViewOutput methods
@@ -29,34 +27,30 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
     func fetchPhotos(with searchTerm: String) {
         self.searchTerm = searchTerm
         resetViewModel()
-        DispatchQueue.main.async { [unowned self] in
-            self.view?.refreshUI(using: .loading)
-        }
+        self.view?.updateViewState(with: .loading)
+        self.view?.resetView()
+        self.view?.startLoader()
         interactor.fetchPhotos(with: searchTerm, page: Defaults.firstPage)
     }
     
     func fetchMorePhotos() {
+        DispatchQueue.main.async { [unowned self] in
+            self.view?.updateViewState(with: .loading)
+        }
         interactor.fetchPhotos(with: searchTerm, page: searchViewModel.currentPage + 1)
     }
     
-    func fetchPhotoUrl(with photos: [FlickrPhoto]) -> [URL] {
-        return photos.compactMap { (photo) -> URL? in
-            let url = "https://farm\(photo.farm).static.flickr.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
-            guard let imageUrl = URL(string: url) else {
-                return nil
-            }
-            return imageUrl
-        }
-    }
-    
     func didSelectPhoto(at index: Int) {
-        //router.routeToPhotoDetails(with: searchViewModel.imageUrlAt(index))
+        router.routeToPhotoDetails(with: searchViewModel.getPhoto(at: index))
     }
     
     
     //MARK: SearchInteractorOutput
     func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
         
+        DispatchQueue.main.async {
+            self.view?.stopLoader()
+        }
         switch result {
         case .success(let flickrFeed):
             let oldCount = searchViewModel.photoCount
@@ -65,21 +59,20 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
                 return IndexPath(item: $0, section: 0)
             }
             DispatchQueue.main.async { [unowned self] in
+                self.view?.updateViewState(with: .content)
                 self.view?.insertPhotos(at: indexPaths)
-                //self.view?.refreshUI(using: .rendering)
             }
             
         case .failure(let error):
             DispatchQueue.main.async { [unowned self] in
-                self.view?.refreshUI(using: .error(message: error.localizedDescription))
+                self.view?.updateViewState(with: .error(message: error.localizedDescription))
             }
         }
     }
     
     //MARK: Private Methods
     private func process(_ flickrFeed: FlickrFeed) {
-        let photoUrlList = fetchPhotoUrl(with: flickrFeed.photos.photo)
-        searchViewModel.append(photoUrlList)
+        searchViewModel.append(flickrFeed.photos.photo)
         searchViewModel.currentPage = flickrFeed.photos.page
         searchViewModel.totalPage = flickrFeed.photos.pages
     }

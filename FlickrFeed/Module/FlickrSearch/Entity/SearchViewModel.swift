@@ -11,7 +11,7 @@ import Foundation
 struct SearchViewModel {
 
     /// Photo Result for the current search term
-    var photos: [URL]
+    var photos: [FlickrPhoto]
     
     
     /// Total no of pages in the paginated result
@@ -28,7 +28,7 @@ struct SearchViewModel {
         }
     }
     
-    mutating func append(_ photoUrls: [URL]) {
+    mutating func append(_ photoUrls: [FlickrPhoto]) {
         self.photos += photoUrls
     }
     
@@ -40,12 +40,29 @@ struct SearchViewModel {
         guard !photos.isEmpty else {
             fatalError("No photos available")
         }
-        return photos[index]
+        
+        return fetchPhotoUrl(with: getPhoto(at: index))
+    }
+    
+    private func fetchPhotoUrl(with photo: FlickrPhoto) -> URL {
+        
+        let url = "https://farm\(photo.farm).static.flickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_m.jpg"
+        guard let imageUrl = URL(string: url) else {
+            fatalError("Invalid Photo URL")
+        }
+        return imageUrl
+    }
+    
+    func getPhoto(at index: Int) -> FlickrPhoto {
+        guard let photo = photos[safe: index] else {
+            fatalError("No photo available at index \(index)")
+        }
+        return photo
     }
     
     mutating func reset() {
         photos = []
-        currentPage = 0
-        totalPage = 0
+        currentPage = Defaults.defaultPageNum
+        totalPage = Defaults.defaultTotalCount
     }
 }

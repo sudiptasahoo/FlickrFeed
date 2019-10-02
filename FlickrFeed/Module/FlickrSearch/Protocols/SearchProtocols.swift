@@ -9,22 +9,26 @@
 import Foundation
 import UIKit
 
-enum SearchResultState {
+enum ViewState : Equatable {
+    case none
     case loading
-    case rendering
+    case content
     case error(message: String)
 }
 
 //MARK: View
-protocol SearchViewInput: class {
+protocol SearchViewInput: Loadable {
     
     /// Refreshes the search screen UI
-    /// - Parameter result: result state of the Flickr Search
-    func refreshUI(using result: SearchResultState)
+    /// - Parameter state: intended view state
+    func updateViewState(with state: ViewState)
     
     /// Insert Photos at specified index path of collection view
     /// - Parameter indexPaths: list of index paths to be inserted at
     func insertPhotos(at indexPaths: [IndexPath])
+    
+    /// Prepare view to present results from new search term
+    func resetView()
 }
 
 //MARK: Presenter
@@ -39,10 +43,6 @@ protocol SearchViewOutput: class {
     
     /// Fetches incremental pages
     func fetchMorePhotos()
-    
-    /// Constructs the Photo URL
-    /// - Parameter photo: FlickrPhoto instance whose URL is to be constructed
-    func fetchPhotoUrl(with photos: [FlickrPhoto]) -> [URL]
     
     /// Photo was tapped by the user
     /// - Parameter index: the index location of the photo

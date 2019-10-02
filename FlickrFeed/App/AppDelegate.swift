@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        AppRouter().configureRootViewController(inWindow: window)
+//        let window = UIWindow(frame: UIScreen.main.bounds)
+//        AppRouter().configureRootViewController(inWindow: window)
         return true
     }
 

@@ -35,10 +35,11 @@ class PhotoCollectionViewCell: UICollectionViewCell, ReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        photoView.image = UIImage()
+        photoView.image = nil
     }
     
-    func configure(imageURL: URL) {
-        photoView.ss_setImage(imageURL)
+    func configure(imageURL: URL, indexPath: IndexPath) {
+        photoView.tag = indexPath.item
+        photoView.setImage(imageURL, placeHolderImage: UIImage(named: "imagePlaceholder"))
     }
 }
