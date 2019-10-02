@@ -55,6 +55,8 @@
 		016048522344B12700259327 /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016048512344B12700259327 /* Collection+Extensions.swift */; };
 		016048542344CB6300259327 /* SearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016048532344CB6300259327 /* SearchResultController.swift */; };
 		016048562344D02800259327 /* UIViewController+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016048552344D02800259327 /* UIViewController+Loader.swift */; };
+		016EFD412344F99100F2471E /* MockUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016EFD402344F99100F2471E /* MockUtil.swift */; };
+		016EFD442345033700F2471E /* XCUIElement+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016EFD432345033700F2471E /* XCUIElement+Extensions.swift */; };
 		016F9232234425580049A980 /* ImageCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 016F9229234425580049A980 /* ImageCache.framework */; };
 		016F9239234425580049A980 /* ImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F9238234425580049A980 /* ImageCacheTests.swift */; };
 		016F923B234425580049A980 /* ImageCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 016F922B234425580049A980 /* ImageCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -196,6 +198,8 @@
 		016048512344B12700259327 /* Collection+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
 		016048532344CB6300259327 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
 		016048552344D02800259327 /* UIViewController+Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Loader.swift"; sourceTree = "<group>"; };
+		016EFD402344F99100F2471E /* MockUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUtil.swift; sourceTree = "<group>"; };
+		016EFD432345033700F2471E /* XCUIElement+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Extensions.swift"; sourceTree = "<group>"; };
 		016F9229234425580049A980 /* ImageCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ImageCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		016F922B234425580049A980 /* ImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
 		016F922C234425580049A980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -488,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				013FDCC12343C1E200A24022 /* MockData.json */,
+				016EFD402344F99100F2471E /* MockUtil.swift */,
 			);
 			path = MockData;
 			sourceTree = "<group>";
@@ -529,6 +534,14 @@
 				01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		016EFD422345032300F2471E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				016EFD432345033700F2471E /* XCUIElement+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		016F922A234425580049A980 /* ImageCache */ = {
@@ -636,6 +649,7 @@
 		01DFCA7E233FB35F00DECB81 /* FlickrFeedUITests */ = {
 			isa = PBXGroup;
 			children = (
+				016EFD422345032300F2471E /* Extensions */,
 				01DFCA7F233FB35F00DECB81 /* FlickrFeedUITests.swift */,
 				01DFCA81233FB35F00DECB81 /* Info.plist */,
 			);
@@ -1001,6 +1015,7 @@
 				013FDCC52343C66600A24022 /* Constants.swift in Sources */,
 				013FDCBD2343C10000A24022 /* EasyNetworkingMock.swift in Sources */,
 				01DFCA75233FB35F00DECB81 /* FlickrFeedTests.swift in Sources */,
+				016EFD412344F99100F2471E /* MockUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,6 +1024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01DFCA80233FB35F00DECB81 /* FlickrFeedUITests.swift in Sources */,
+				016EFD442345033700F2471E /* XCUIElement+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1129,6 +1145,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = EasyNetworkingTests/Info.plist;
@@ -1141,7 +1158,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Debug;
 		};
@@ -1149,6 +1166,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = EasyNetworkingTests/Info.plist;
@@ -1161,7 +1179,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Release;
 		};
@@ -1225,6 +1243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = ImageCacheTests/Info.plist;
@@ -1237,7 +1256,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Debug;
 		};
@@ -1245,6 +1264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = ImageCacheTests/Info.plist;
@@ -1257,7 +1277,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Release;
 		};
@@ -1433,7 +1453,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Debug;
 		};
@@ -1455,7 +1475,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlickrFeed.app/FlickrFeed";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Flickr Feed.app/Flickr Feed";
 			};
 			name = Release;
 		};

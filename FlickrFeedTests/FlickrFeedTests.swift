@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import FlickrFeed
+@testable import Flickr_Feed
 
 class FlickrFeedTests: XCTestCase {
 

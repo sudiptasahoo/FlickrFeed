@@ -27,7 +27,7 @@ class ImageCacheTests: XCTestCase {
         let expect = expectation(description: "Untill the image is fetched from the server")
         var image: UIImage?
         var source: ImageFetchSource?
-        FetchImage(cache: cache).fetchImage(from: URL(string: url)!) { (dImage, dSource) in
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (dImage, dSource) in
             image = dImage
             source = dSource
             expect.fulfill()
@@ -46,7 +46,7 @@ class ImageCacheTests: XCTestCase {
         let expect = expectation(description: "Untill the image is fetched from the server")
         var image: UIImage?
         var source: ImageFetchSource?
-        FetchImage(cache: cache).fetchImage(from: URL(string: url)!) { (dImage, dSource) in
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (dImage, dSource) in
             image = dImage
             source = dSource
             expect.fulfill()

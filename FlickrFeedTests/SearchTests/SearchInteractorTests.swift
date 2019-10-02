@@ -8,20 +8,20 @@
 
 import XCTest
 import EasyNetworking
-@testable import FlickrFeed
+@testable import Flickr_Feed
 
 final class FlickrSearchInteractorTests: XCTestCase {
     
-    var interactor: SearchInteractorMock!
-    var failInteractor: SearchInteractorMock!
+    var interactor: SearchInteractor!
+    var failInteractor: SearchInteractor!
     var presenter: SearchPresenterInputMock!
     
     override func setUp() {
         presenter = SearchPresenterInputMock()
         let network = EasyNetworkingSuccessMock()
         let failNetwork = EasyNetworkingFailureMock()
-        interactor = SearchInteractorMock(presenter: presenter, network: network)
-        failInteractor = SearchInteractorMock(presenter: presenter, network: failNetwork)
+        interactor = SearchInteractor(httpNetworking: network, presenter: presenter)
+        failInteractor = SearchInteractor(httpNetworking: failNetwork, presenter: presenter)
     }
     
     override func tearDown() {
@@ -33,43 +33,12 @@ final class FlickrSearchInteractorTests: XCTestCase {
     func testFetchFlickrPhotos() {
         interactor.fetchPhotos(with: "car", page: 1)
         XCTAssertTrue(presenter.flickrSuccessCalled)
-        XCTAssertTrue(interactor.loadPhotosSuccess)
     }
     
     func testFetchFlickrPhotosErrorResponse() {
         failInteractor.fetchPhotos(with: "car", page: 1)
         XCTAssertTrue(presenter.flickrFailureCalled)
-        XCTAssertTrue(failInteractor.loadPhotosFailure)
     }
-}
-
-
-final class SearchInteractorMock: SearchInteractorInput {
-    
-    weak var presenter: SearchInteractorOutput?
-    var loadPhotosSuccess: Bool = false
-    var loadPhotosFailure: Bool = false
-    var network: NetworkService?
-    
-    init(presenter: SearchInteractorOutput, network: NetworkService) {
-        self.presenter = presenter
-        self.network = network
-    }
-    
-    func fetchPhotos(with searchTerm: String, page: Int) {
-        network?.request(FlickrAPI.search(text: searchTerm, page: page), completion: { (result: Result<FlickrFeed, Error>) in
-            switch result {
-            case let .success(flickrPhotos):
-                self.loadPhotosSuccess = true
-                self.presenter?.fetchPhotoCompleted(with: .success(flickrPhotos))
-            case let .failure(error):
-                self.loadPhotosFailure = true
-                self.presenter?.fetchPhotoCompleted(with: .failure(error))
-            }
-        })
-    }
-    
-    
 }
 
 final class SearchPresenterInputMock: SearchInteractorOutput {

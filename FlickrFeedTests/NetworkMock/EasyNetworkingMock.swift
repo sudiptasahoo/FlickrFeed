@@ -8,7 +8,7 @@
 
 import Foundation
 import EasyNetworking
-@testable import FlickrFeed
+@testable import Flickr_Feed
 
 class EasyNetworkingSuccessMock : NetworkService {
     

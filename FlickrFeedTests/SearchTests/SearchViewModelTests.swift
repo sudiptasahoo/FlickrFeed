@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import FlickrFeed
+@testable import Flickr_Feed
 
 final class SearchViewModelTests: XCTestCase {
 
@@ -26,24 +26,15 @@ final class SearchViewModelTests: XCTestCase {
     }
     
     func testViewModelUrlListNotEmpty() {
-        var urls: [URL] = []
-        for _ in 0...3 {
-            let url = URL(string: "https://flickr.com/example/image.jpg")!
-            urls.append(url)
-        }
-        let viewModel = SearchViewModel(photos: urls, totalPage: 10, currentPage: 1)
+        let viewModel = SearchViewModel(photos: MockUtil.shared.mockPhotos, totalPage: 10, currentPage: 1)
         XCTAssertFalse(viewModel.photos.isEmpty)
         XCTAssertTrue(viewModel.photoCount == 4)
     }
     
     func testAddMorePhoto() {
-        var urls: [URL] = []
-        for _ in 0...3 {
-            let url = URL(string: "https://flickr.com/example/image.jpg")!
-            urls.append(url)
-        }
-        var viewModel = SearchViewModel(photos: urls, totalPage: 10, currentPage: 1)
-        viewModel.append(urls)
+        let photos = MockUtil.shared.mockPhotos
+        var viewModel = SearchViewModel(photos: photos, totalPage: 10, currentPage: 1)
+        viewModel.append(photos)
         XCTAssertFalse(viewModel.isEmpty)
         XCTAssertTrue(viewModel.photoCount == 8)
     }

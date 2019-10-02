@@ -8,14 +8,14 @@
 
 import XCTest
 import EasyNetworking
-@testable import FlickrFeed
+@testable import Flickr_Feed
 
 final class SearchPresenterTests: XCTestCase {
     
     var interactor: SearchInteractorMock!
-    var presenter: SearchPresenterMock!
+    var presenter: SearchPresenter!
     var view: SearchViewControllerMock!
-    var router: SearchRouterInput!
+    var router: SearchRouterMock!
     var network: NetworkService!
     
     /// Keeps the latest searched term
@@ -23,7 +23,7 @@ final class SearchPresenterTests: XCTestCase {
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        presenter = SearchPresenterMock()
+        presenter = SearchPresenter()
         network = EasyNetworkingSuccessMock()
         interactor = SearchInteractorMock(presenter: presenter, network: network)
         router = SearchRouterMock()
@@ -44,75 +44,103 @@ final class SearchPresenterTests: XCTestCase {
     
     func testSearchMethodCall() {
         presenter.fetchPhotos(with: "car")
-        XCTAssertTrue(presenter.flickrSearchSuccess)
         XCTAssertTrue(view.showFlickrImages)
         XCTAssertNotNil(presenter.searchViewModel)
         XCTAssertTrue(presenter.searchViewModel.photos.count == 3)
     }
-    
+        
     func testDidSelectPhotoCall() {
         presenter.didSelectPhoto(at: 0)
-        XCTAssertTrue(presenter.selectedPhoto)
+        XCTAssertTrue(router.showFlickrPhotoDetailsCalled)
     }
 }
 
-final class SearchPresenterMock: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
-    
-    weak var view: SearchViewInput?
-    var interactor: SearchInteractorInput!
-    var router: SearchRouterInput!
-    var searchViewModel: SearchViewModel!
-    
-    var flickrSearchSuccess = false
-    var selectedPhoto = false
-    
-    var searchPhotoSuccess = false
-    var searchPhotoFailure = false
-    
-    var searchText = ""
-    
-    func fetchPhotos(with searchTerm: String) {
-        searchText = searchTerm
-        interactor.fetchPhotos(with: searchTerm, page: 1)
+//final class SearchPresenterMock: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
+//
+//    weak var view: SearchViewInput?
+//    var interactor: SearchInteractorInput!
+//    var router: SearchRouterInput!
+//    var searchViewModel: SearchViewModel!
+//
+//    var flickrSearchSuccess = false
+//    var selectedPhoto = false
+//
+//    var searchPhotoSuccess = false
+//    var searchPhotoFailure = false
+//
+//    var searchText = ""
+//
+//    func fetchPhotos(with searchTerm: String) {
+//        searchText = searchTerm
+//        interactor.fetchPhotos(with: searchTerm, page: 1)
+//    }
+//
+//    func fetchMorePhotos() {
+//        interactor.fetchPhotos(with: searchText, page: searchViewModel.currentPage+1)
+//    }
+//
+//    func fetchPhotoUrl(with photos: [FlickrPhoto]) -> [URL] {
+//        return photos.compactMap { (photo) -> URL? in
+//            let url = "https://farm\(photo.farm).staticflickr.com.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
+//            guard let imageUrl = URL(string: url) else {
+//                return nil
+//            }
+//            return imageUrl
+//        }
+//    }
+//
+//    func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
+//
+//        switch result {
+//
+//        case .success(let flickrFeed):
+//            flickrSearchSuccess = true
+//            XCTAssertFalse(flickrFeed.photos.photo.isEmpty)
+//            let photoUrlList = fetchPhotoUrl(with: flickrFeed.photos.photo)
+//            let viewModel = SearchViewModel(photos: photoUrlList, totalPage: flickrFeed.photos.pages, currentPage: flickrFeed.photos.page)
+//            self.searchViewModel = viewModel
+//            view?.updateViewState(with: .rendering)
+//
+//        case .failure(let error):
+//            searchPhotoFailure = true
+//            view?.updateViewState(with: .error(message: error.localizedDescription))
+//        }
+//    }
+//
+//    func didSelectPhoto(at index: Int) {
+//        selectedPhoto = true
+//    }
+//}
+
+
+
+final class SearchInteractorMock: SearchInteractorInput {
+
+    weak var presenter: SearchInteractorOutput?
+    var loadPhotosSuccess: Bool = false
+    var loadPhotosFailure: Bool = false
+    var network: NetworkService?
+
+    init(presenter: SearchInteractorOutput, network: NetworkService) {
+        self.presenter = presenter
+        self.network = network
     }
-    
-    func fetchMorePhotos() {
-        interactor.fetchPhotos(with: searchText, page: searchViewModel.currentPage+1)
-    }
-    
-    func fetchPhotoUrl(with photos: [FlickrPhoto]) -> [URL] {
-        return photos.compactMap { (photo) -> URL? in
-            let url = "https://farm\(photo.farm).staticflickr.com.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
-            guard let imageUrl = URL(string: url) else {
-                return nil
+
+    func fetchPhotos(with searchTerm: String, page: Int) {
+        network?.request(FlickrAPI.search(text: searchTerm, page: page), completion: { (result: Result<FlickrFeed, Error>) in
+            switch result {
+            case let .success(flickrPhotos):
+                self.loadPhotosSuccess = true
+                self.presenter?.fetchPhotoCompleted(with: .success(flickrPhotos))
+            case let .failure(error):
+                self.loadPhotosFailure = true
+                self.presenter?.fetchPhotoCompleted(with: .failure(error))
             }
-            return imageUrl
-        }
+        })
     }
-    
-    func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
-        
-        switch result {
-            
-        case .success(let flickrFeed):
-            flickrSearchSuccess = true
-            XCTAssertFalse(flickrFeed.photos.photo.isEmpty)
-            let photoUrlList = fetchPhotoUrl(with: flickrFeed.photos.photo)
-            let viewModel = SearchViewModel(photos: photoUrlList, totalPage: flickrFeed.photos.pages, currentPage: flickrFeed.photos.page)
-            self.searchViewModel = viewModel
-            view?.updateViewState(with: .rendering)
-            
-        case .failure(let error):
-            searchPhotoFailure = true
-            view?.updateViewState(with: .error(message: error.localizedDescription))
-        }
-    }
-    
-    func didSelectPhoto(at index: Int) {
-        selectedPhoto = true
-    }
-}
 
+
+}
 
 final class SearchViewControllerMock: UIViewController, SearchViewInput {
     
@@ -120,6 +148,7 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
     var showFlickrImages = false
     var showErrorMessage = false
     var showLoader = false
+    var listCount = 0
     
     init(presenter: SearchViewOutput) {
         self.presenter = presenter
@@ -130,10 +159,12 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateViewState(with result: SearchResultState) {
+    func updateViewState(with result: ViewState) {
         
         switch result {
-        case .rendering:
+            
+        case .none: break
+        case .content:
             XCTAssertFalse(presenter.searchViewModel.isEmpty)
             XCTAssertTrue(presenter.searchViewModel.photos.count == 3)
             showFlickrImages = true
@@ -147,7 +178,11 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
     }
     
     func insertPhotos(at indexPaths: [IndexPath]) {
-        //TODO
+        listCount += indexPaths.count
+    }
+    
+    func resetView() {
+        listCount = 0
     }
 }
 

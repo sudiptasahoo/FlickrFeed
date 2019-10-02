@@ -20,7 +20,7 @@ enum FlickrMethods {
 }
 
 //MARK: App Defaults
-enum Defaults {
+public enum Defaults {
     static let defaultPageSize: Int = 20
     static let firstPage: Int = 1
     static let defaultCellSpacing: CGFloat = 1.0
@@ -30,7 +30,7 @@ enum Defaults {
 }
 
 //MARK: Copies
-enum Strings {
+public enum Strings {
     static let searchPlaceholder = "Search Photos"
     static let searchVcTitle = "Flickr Feed"
     static let error = "Error Occurred"
@@ -43,4 +43,10 @@ enum Strings {
 //MARK: Metrics
 enum Metrics {
     static let screenWidth = UIScreen.main.bounds.width
+}
+
+//MARK:- UI Testing identifiers
+public enum UITest {
+    static let searchBar = "search_bar"
+    static let collectionView = "photo_collection"
 }
