@@ -21,7 +21,7 @@ enum FlickrMethods {
 
 //MARK: App Defaults
 public enum Defaults {
-    static let defaultPageSize: Int = 20
+    static let defaultPageSize: Int = 30
     static let firstPage: Int = 1
     static let defaultCellSpacing: CGFloat = 1.0
     static let gridNoOfColumns: CGFloat = 3.0
@@ -37,7 +37,8 @@ public enum Strings {
     static let ok = "OK"
     static let retry = "RETRY"
     static let cancel = "CANCEL"
-    static let defaultBlackListText = "Type to start ..."
+    static let defaultBlankListText = "Type in the Search Bar to start ..."
+    static let searchLoaderText = "Searching "
 }
 
 //MARK: Metrics
@@ -49,4 +50,15 @@ enum Metrics {
 public enum UITest {
     static let searchBar = "search_bar"
     static let collectionView = "photo_collection"
+}
+
+//MARK: Images
+enum Images {
+    static let imagePlaceholder = "imagePlaceholder"
+}
+
+enum Errors {
+    static let networkErrorMessage = "Something went wrong"
+    static let invalidPhotoUrl = "Photo URL could not be constructed"
+    static let noPhoto = "No photo present at this index"
 }

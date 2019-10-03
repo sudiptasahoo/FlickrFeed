@@ -10,7 +10,7 @@ import Foundation
 import EasyNetworking
 @testable import Flickr_Feed
 
-class EasyNetworkingSuccessMock : NetworkService {
+final class EasyNetworkingSuccessMock : NetworkService {
     
     func request<T>(_ endPoint: EndPoint, completion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask? where T: Decodable{
         
@@ -24,7 +24,7 @@ class EasyNetworkingSuccessMock : NetworkService {
     }
 }
 
-class EasyNetworkingFailureMock : NetworkService {
+final class EasyNetworkingFailureMock : NetworkService {
     
     func request<T>(_ endPoint: EndPoint, completion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask? where T: Decodable{
         

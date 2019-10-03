@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoCollectionViewCell: UICollectionViewCell, ReusableView {
+final class PhotoCollectionViewCell: UICollectionViewCell, ReusableView {
     
     lazy var photoView: UIImageView = {
         let imageView = UIImageView()
@@ -29,7 +29,11 @@ class PhotoCollectionViewCell: UICollectionViewCell, ReusableView {
     
     private func setupViews() {
         contentView.addSubview(photoView)
-        contentView.backgroundColor = .systemGray
+        if #available(iOS 13.0, *) {
+            contentView.backgroundColor = .systemBackground
+        } else {
+            contentView.backgroundColor = .black
+        }
         photoView.pinEdges(to: contentView)
     }
     
@@ -40,6 +44,9 @@ class PhotoCollectionViewCell: UICollectionViewCell, ReusableView {
     
     func configure(imageURL: URL, indexPath: IndexPath) {
         photoView.tag = indexPath.item
-        photoView.setImage(imageURL, placeHolderImage: UIImage(named: "imagePlaceholder"))
+        photoView.setImage(from: imageURL, placeHolderImage: UIImage(named: Images.imagePlaceholder))
+        
+        //Useful for UI Testing
+        accessibilityIdentifier = "Photo\(indexPath.row)"
     }
 }

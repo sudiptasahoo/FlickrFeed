@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 protocol Loadable: AnyObject {
-    func startLoader()
+    func startLoader(loadingText: String?)
     func stopLoader()
 }
 
 extension Loadable where Self: UIViewController {
-    func startLoader() {
+    func startLoader(loadingText: String? = nil) {
         DispatchQueue.main.async {
-            self.view.startLoader()
+            self.view.startLoader(loadingText: loadingText)
         }
     }
     

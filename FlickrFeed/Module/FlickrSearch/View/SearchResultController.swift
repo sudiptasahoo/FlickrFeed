@@ -13,7 +13,7 @@ protocol SearchResultControllerDelegate: AnyObject {
     func didTapSearchBar(withText searchText: String)
 }
 
-final class SearchResultController: UIViewController, UISearchBarDelegate {
+final class SearchResultController: UIViewController {
 
     weak var searchDelegate: SearchResultControllerDelegate?
     
@@ -23,7 +23,10 @@ final class SearchResultController: UIViewController, UISearchBarDelegate {
             view.backgroundColor = .systemBackground
         }
     }
+}
 
+extension SearchResultController: UISearchBarDelegate {
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
        searchBar.resignFirstResponder()
     }

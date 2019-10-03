@@ -16,8 +16,8 @@ struct MockUtil {
     var mockPhotos: [FlickrPhoto] {
         
         var photos = [FlickrPhoto]()
-        for _ in 0...3 {
-            let photo = FlickrPhoto(id: "1", owner: "flickr", secret: "123", server: "123", farm: 1, title: "testing title", ispublic: 1, isfriend: 1, isfamily: 1)
+        for index in 0...3 {
+            let photo = FlickrPhoto(id: String(index), owner: "flickr", secret: "123", server: "123", farm: 1, title: "testing title", ispublic: 1, isfriend: 1, isfamily: 1)
             photos.append(photo)
         }
         return photos

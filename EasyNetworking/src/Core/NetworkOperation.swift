@@ -12,14 +12,10 @@ public typealias NetworkOperationCompletion = (_ result: Result<NetworkOperation
 public typealias NetworkDispatchCompletion  = (_ data: Data?, _ response: HTTPURLResponse?, _ error: Error?)->()
 
 public protocol NetworkOperation {
-    
-    associatedtype NetworkPreparer = NetworkRequestPreparable
-    associatedtype NetworkDispatcher = NetworkDispatchable
-    associatedtype NetworkRequestBehaviours = RequestBehaviour
-    
-    var requestBehaviours: [NetworkRequestBehaviours] { get set }
-    var requestDispatcher: NetworkDispatcher { get set }
-    var requestPreparer: NetworkPreparer { get set }
+
+    var requestBehaviours: [RequestBehaviour] { get set }
+    var requestDispatcher: NetworkDispatchable { get set }
+    var requestPreparer: NetworkRequestPreparable { get set }
     
     /**
      Takes an EndPoint and dispatches the network call.

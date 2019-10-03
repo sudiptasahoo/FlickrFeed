@@ -23,11 +23,13 @@ extension ReusableView {
 extension UICollectionView {
     
     //MARK: UICollectionViewCell
+    
+    ///Register a class for use in creating new collection view cells.
     final func register<T: UICollectionViewCell>(_ cellType: T.Type) where T: ReusableView {
         self.register(cellType.self, forCellWithReuseIdentifier: cellType.reuseIdentifier)
     }
     
-    
+    ///Returns a reusable cell object located by its indexPath
     final func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath) -> T where T: ReusableView {
         guard let cell = self.dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Failed to dequeue a cell with identifier \(T.reuseIdentifier) matching type \(T.self).")
@@ -36,6 +38,8 @@ extension UICollectionView {
     }
     
     //MARK: Supplementary View
+    
+    ///Registers a class for use in creating supplementary views for the collection view.
     final func register<T: UICollectionReusableView>(_ supplementaryViewType: T.Type, ofKind elementKind: String)
         where T: ReusableView {
             self.register(
@@ -45,6 +49,7 @@ extension UICollectionView {
             )
     }
     
+    ///Returns a reusable supplementary view located by its indexPath and kind.
     final func dequeueReusableSupplementaryView<T: UICollectionReusableView>
         (ofKind elementKind: String, for indexPath: IndexPath, viewType: T.Type = T.self) -> T
         where T: ReusableView {

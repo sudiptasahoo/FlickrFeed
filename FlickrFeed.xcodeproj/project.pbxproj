@@ -9,8 +9,13 @@
 /* Begin PBXBuildFile section */
 		010AD8262344E53900819A6D /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AD8252344E53900819A6D /* UIViewController+Alert.swift */; };
 		010AD8282344EF0800819A6D /* EasyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010AD8272344EF0800819A6D /* EasyCache.swift */; };
+		013F034423459465002E29E8 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F034323459465002E29E8 /* AppError.swift */; };
+		013F0347234598DE002E29E8 /* FlickrAPIEndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F0346234598DE002E29E8 /* FlickrAPIEndPointTests.swift */; };
+		013F034A2345F2E6002E29E8 /* MockNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F03492345F2E6002E29E8 /* MockNetworking.swift */; };
+		013F034C2345FC8B002E29E8 /* MockRequestBehaviour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F034B2345FC8B002E29E8 /* MockRequestBehaviour.swift */; };
+		013F034E234600E0002E29E8 /* MockEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F034D234600E0002E29E8 /* MockEndPoint.swift */; };
+		013F035023460856002E29E8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013F034F23460856002E29E8 /* Constants.swift */; };
 		013FDC53234298DF00A24022 /* EasyNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; };
-		013FDC5A234298DF00A24022 /* EasyNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */; };
 		013FDC5C234298DF00A24022 /* EasyNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 013FDC4C234298DF00A24022 /* EasyNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		013FDC5F234298DF00A24022 /* EasyNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; };
 		013FDC60234298DF00A24022 /* EasyNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 013FDC4A234298DF00A24022 /* EasyNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -70,7 +75,6 @@
 		01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */; };
 		01DFCA67233FB35F00DECB81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA66233FB35F00DECB81 /* Assets.xcassets */; };
 		01DFCA6A233FB35F00DECB81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */; };
-		01DFCA75233FB35F00DECB81 /* FlickrFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA74233FB35F00DECB81 /* FlickrFeedTests.swift */; };
 		01DFCA80233FB35F00DECB81 /* FlickrFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA7F233FB35F00DECB81 /* FlickrFeedUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,11 +155,16 @@
 /* Begin PBXFileReference section */
 		010AD8252344E53900819A6D /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		010AD8272344EF0800819A6D /* EasyCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyCache.swift; sourceTree = "<group>"; };
+		013F034323459465002E29E8 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		013F0346234598DE002E29E8 /* FlickrAPIEndPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPIEndPointTests.swift; sourceTree = "<group>"; };
+		013F03492345F2E6002E29E8 /* MockNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworking.swift; sourceTree = "<group>"; };
+		013F034B2345FC8B002E29E8 /* MockRequestBehaviour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestBehaviour.swift; sourceTree = "<group>"; };
+		013F034D234600E0002E29E8 /* MockEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEndPoint.swift; sourceTree = "<group>"; };
+		013F034F23460856002E29E8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		013FDC4A234298DF00A24022 /* EasyNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		013FDC4C234298DF00A24022 /* EasyNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyNetworking.h; sourceTree = "<group>"; };
 		013FDC4D234298DF00A24022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		013FDC52234298DF00A24022 /* EasyNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyNetworkingTests.swift; sourceTree = "<group>"; };
 		013FDC5B234298DF00A24022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		013FDC6A234298F400A24022 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		013FDC6B234298F400A24022 /* URLRequest+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLRequest+Encoding.swift"; sourceTree = "<group>"; };
@@ -217,7 +226,6 @@
 		01DFCA69233FB35F00DECB81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01DFCA6B233FB35F00DECB81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01DFCA70233FB35F00DECB81 /* FlickrFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		01DFCA74233FB35F00DECB81 /* FlickrFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrFeedTests.swift; sourceTree = "<group>"; };
 		01DFCA76233FB35F00DECB81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01DFCA7B233FB35F00DECB81 /* FlickrFeedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrFeedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DFCA7F233FB35F00DECB81 /* FlickrFeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrFeedUITests.swift; sourceTree = "<group>"; };
@@ -281,6 +289,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		013F034223459455002E29E8 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				013F034323459465002E29E8 /* AppError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		013F0345234598CC002E29E8 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				013F0346234598DE002E29E8 /* FlickrAPIEndPointTests.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		013F03482345F2D2002E29E8 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				016F924D234425AF0049A980 /* MockModel.swift */,
+				013F03492345F2E6002E29E8 /* MockNetworking.swift */,
+				013F034B2345FC8B002E29E8 /* MockRequestBehaviour.swift */,
+				013F034D234600E0002E29E8 /* MockEndPoint.swift */,
+				013F034F23460856002E29E8 /* Constants.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		013FDC4B234298DF00A24022 /* EasyNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,8 +330,8 @@
 		013FDC58234298DF00A24022 /* EasyNetworkingTests */ = {
 			isa = PBXGroup;
 			children = (
-				016F924C234425AF0049A980 /* Tests */,
-				013FDC59234298DF00A24022 /* EasyNetworkingTests.swift */,
+				016F924E234425AF0049A980 /* NetworkingTests.swift */,
+				013F03482345F2D2002E29E8 /* Mock */,
 				013FDC5B234298DF00A24022 /* Info.plist */,
 			);
 			path = EasyNetworkingTests;
@@ -582,15 +618,6 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		016F924C234425AF0049A980 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				016F924D234425AF0049A980 /* MockModel.swift */,
-				016F924E234425AF0049A980 /* NetworkingTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		01DFCA51233FB35D00DECB81 = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +649,7 @@
 		01DFCA5C233FB35D00DECB81 /* FlickrFeed */ = {
 			isa = PBXGroup;
 			children = (
+				013F034223459455002E29E8 /* Errors */,
 				013FDCE02344031E00A24022 /* App */,
 				013FDCDD2343F5C000A24022 /* Protocols */,
 				013FDCD42343EFAE00A24022 /* Extensions */,
@@ -636,11 +664,11 @@
 		01DFCA73233FB35F00DECB81 /* FlickrFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				013F0345234598CC002E29E8 /* EndPoint */,
 				013FDCC32343C65900A24022 /* Constants */,
 				013FDCBE2343C15900A24022 /* MockData */,
 				013FDCBB2343C0EF00A24022 /* NetworkMock */,
 				013FDCA92343B26000A24022 /* SearchTests */,
-				01DFCA74233FB35F00DECB81 /* FlickrFeedTests.swift */,
 				01DFCA76233FB35F00DECB81 /* Info.plist */,
 			);
 			path = FlickrFeedTests;
@@ -950,7 +978,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				013FDC5A234298DF00A24022 /* EasyNetworkingTests.swift in Sources */,
+				013F034C2345FC8B002E29E8 /* MockRequestBehaviour.swift in Sources */,
+				013F034E234600E0002E29E8 /* MockEndPoint.swift in Sources */,
+				013F034A2345F2E6002E29E8 /* MockNetworking.swift in Sources */,
+				013F035023460856002E29E8 /* Constants.swift in Sources */,
 				016F9250234425AF0049A980 /* NetworkingTests.swift in Sources */,
 				016F924F234425AF0049A980 /* MockModel.swift in Sources */,
 			);
@@ -999,6 +1030,7 @@
 				016F9252234426D50049A980 /* UIImageView+Cache.swift in Sources */,
 				016048542344CB6300259327 /* SearchResultController.swift in Sources */,
 				013FDCE22344032A00A24022 /* AppRouter.swift in Sources */,
+				013F034423459465002E29E8 /* AppError.swift in Sources */,
 				01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */,
 				013FDC982342A05F00A24022 /* FlickrAPI.swift in Sources */,
 				013FDCCE2343E4B800A24022 /* SearchModuleBuilder.swift in Sources */,
@@ -1013,8 +1045,8 @@
 				013FDCB62343B81100A24022 /* SearchInteractorTests.swift in Sources */,
 				013FDCBA2343B86000A24022 /* SearchViewModelTests.swift in Sources */,
 				013FDCC52343C66600A24022 /* Constants.swift in Sources */,
+				013F0347234598DE002E29E8 /* FlickrAPIEndPointTests.swift in Sources */,
 				013FDCBD2343C10000A24022 /* EasyNetworkingMock.swift in Sources */,
-				01DFCA75233FB35F00DECB81 /* FlickrFeedTests.swift in Sources */,
 				016EFD412344F99100F2471E /* MockUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

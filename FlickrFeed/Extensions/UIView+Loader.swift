@@ -12,7 +12,9 @@ import UIKit
 extension UIView {
     
     var loaderTag: Int { return 783648 }
-
+    
+    /// Adds a loader to the center of the view
+    /// - Parameter loadingText: optional, loading text shown below the activity indicator
     func startLoader(loadingText: String? = nil) {
         
         DispatchQueue.main.async {
@@ -36,10 +38,10 @@ extension UIView {
                 loaderView.contentView.addSubview(label)
                 
                 NSLayoutConstraint.activate([
-                    label.leadingAnchor.constraint(equalTo: loaderView.contentView.leadingAnchor, constant: 150),
-                    label.trailingAnchor.constraint(equalTo: loaderView.contentView.trailingAnchor, constant: -150),
+                    label.leadingAnchor.constraint(equalTo: loaderView.contentView.leadingAnchor, constant: 30),
+                    label.trailingAnchor.constraint(equalTo: loaderView.contentView.trailingAnchor, constant: -30),
                     label.topAnchor.constraint(equalTo: activityIndicatorView.bottomAnchor, constant: 40),
-                    ])
+                ])
             }
             
             self.addSubview(loaderView)
@@ -51,7 +53,7 @@ extension UIView {
         DispatchQueue.main.async {
             self.subviews.filter(
                 { $0.tag == self.loaderTag}).forEach {
-                $0.removeFromSuperview()
+                    $0.removeFromSuperview()
             }
         }
     }

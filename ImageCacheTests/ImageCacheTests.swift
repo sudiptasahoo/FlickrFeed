@@ -9,7 +9,7 @@
 import XCTest
 @testable import ImageCache
 
-class ImageCacheTests: XCTestCase {
+final class ImageCacheTests: XCTestCase {
 
     let url = "https://images.pexels.com/photos/39803/pexels-photo-39803.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500"
     let cache = URLCache.shared

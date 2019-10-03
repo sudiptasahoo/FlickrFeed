@@ -31,7 +31,7 @@ struct FakeContact: Codable{
     }
 }
 
-class MockContact {
+final class MockContact {
     
     static let shared = MockContact()
     

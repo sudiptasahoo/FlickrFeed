@@ -11,6 +11,7 @@ import UIKit
 
 extension UIViewController {
     
+    /// Shows popup using UIAlertController with the supplied paramaters
     func showAlert(title: String, message: String, retryAction: (() -> Void)? = nil) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         if retryAction != nil {

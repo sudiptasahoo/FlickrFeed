@@ -22,7 +22,10 @@ final class SearchRouter: SearchRouterInput {
     
     //MARK: SearchRouterInput methods
     func routeToPhotoDetails(with photo: FlickrPhoto) {
-        print(photo.title)
+        
+        //Temporary code
+        //It should build module for PhotoDetails and push on the current nav controller
+        viewController?.showAlert(title: "Photo Details", message: photo.title ?? "nil")
     }
 }
 

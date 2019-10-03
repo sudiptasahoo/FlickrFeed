@@ -17,12 +17,15 @@ public protocol NetworkService: class {
 
 public final class Networking: NetworkService{
     
-    private let network = HTTPNetworkOperation([NetworkLogger(), StatusBarLoader()], NetworkRequestPreparer(), NetworkDispatcher())
+    private let network: NetworkOperation!
     
     /// Gives a singleton instance of Networking class
     public static let shared = Networking()
     
-    private init() {}
+    init(network: NetworkOperation = HTTPNetworkOperation([NetworkLogger(), StatusBarLoader()], NetworkRequestPreparer(), NetworkDispatcher())) {
+        
+        self.network = network
+    }
     
     /**
      This method takes EndPoint and returns the URLSessionDataTask

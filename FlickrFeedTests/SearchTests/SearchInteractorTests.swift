@@ -30,12 +30,12 @@ final class FlickrSearchInteractorTests: XCTestCase {
         presenter = nil
     }
     
-    func testFetchFlickrPhotos() {
+    func testFetchPhotosWithSuccessResponse() {
         interactor.fetchPhotos(with: "car", page: 1)
         XCTAssertTrue(presenter.flickrSuccessCalled)
     }
     
-    func testFetchFlickrPhotosErrorResponse() {
+    func testFetchPhotosWithErrorResponse() {
         failInteractor.fetchPhotos(with: "car", page: 1)
         XCTAssertTrue(presenter.flickrFailureCalled)
     }

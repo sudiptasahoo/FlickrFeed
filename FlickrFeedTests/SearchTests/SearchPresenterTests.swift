@@ -43,18 +43,27 @@ final class SearchPresenterTests: XCTestCase {
     }
     
     func testSearchMethodCall() {
+        let expect  = expectation(description: "Async Task Expectation")
+        view.postRendered = { () -> Void in
+            expect.fulfill()
+        }
+
         presenter.fetchPhotos(with: "car")
-        XCTAssertTrue(view.showFlickrImages)
-        XCTAssertNotNil(presenter.searchViewModel)
-        XCTAssertTrue(presenter.searchViewModel.photos.count == 3)
+        waitForExpectations(timeout: 60) { (error) in
+            XCTAssertTrue(self.view.showFlickrImages)
+            XCTAssertNotNil(self.presenter.searchViewModel)
+            XCTAssertTrue(self.presenter.searchViewModel.photoCount == 3)
+        }
     }
         
     func testDidSelectPhotoCall() {
+        presenter.fetchPhotos(with: "car")
         presenter.didSelectPhoto(at: 0)
         XCTAssertTrue(router.showFlickrPhotoDetailsCalled)
     }
 }
 
+//May be useful for future test cases
 //final class SearchPresenterMock: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
 //
 //    weak var view: SearchViewInput?
@@ -149,7 +158,8 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
     var showErrorMessage = false
     var showLoader = false
     var listCount = 0
-    
+    var postRendered: (() -> Void)?
+
     init(presenter: SearchViewOutput) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -166,9 +176,9 @@ final class SearchViewControllerMock: UIViewController, SearchViewInput {
         case .none: break
         case .content:
             XCTAssertFalse(presenter.searchViewModel.isEmpty)
-            XCTAssertTrue(presenter.searchViewModel.photos.count == 3)
+            XCTAssertTrue(presenter.searchViewModel.photoCount == 3)
             showFlickrImages = true
-            
+            postRendered?()
         case .error(_ ):
             showErrorMessage = true
             

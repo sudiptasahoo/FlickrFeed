@@ -29,8 +29,10 @@ final class SearchViewController: UIViewController {
         let lbl = UILabel()
         lbl.textColor = .orange
         lbl.font = UIFont.systemFont(ofSize: 20)
-        lbl.text = Strings.defaultBlackListText
+        lbl.text = Strings.defaultBlankListText
+        lbl.sizeToFit()
         lbl.textAlignment = .center
+        lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
@@ -100,7 +102,7 @@ final class SearchViewController: UIViewController {
     
     //MARK: configureSearchController
     private func configureSearchController() {
-
+        
         if #available(iOS 11, *) {
             navigationItem.searchController = searchController
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -137,29 +139,31 @@ extension SearchViewController: SearchViewInput {
     
     fileprivate func refreshUI() {
         
-        showHideCollectionView()
+        guard let viewModel = presenter?.searchViewModel else { return }
+        hideCollectionView(hide: viewModel.isEmpty)
+        
         switch viewState {
         case .none:
             view.addSubview(startupLabel)
-            startupLabel.pinEdgesToSuperView()
-        case .content:
-            startupLabel.removeFromSuperview()
-        case .loading:
+            startupLabel.centerInSuperView()
+        case .content, .loading:
             startupLabel.removeFromSuperview()
         case .error(let message):
             startupLabel.removeFromSuperview()
+            
+            //This way error handling can be improved. May be through Snackbar
             showAlert(title: Strings.error, message: message, retryAction: { [unowned self] in
                 self.presenter?.fetchMorePhotos()
             })
         }
     }
     
-    fileprivate func showHideCollectionView(){
-        guard let viewModel = presenter?.searchViewModel else { return }
-        if !viewModel.isEmpty {
-            collectionView.isHidden = false
-        } else {
+    /// Hide/Show the collection view when required
+    fileprivate func hideCollectionView(hide: Bool){
+        if hide {
             collectionView.isHidden = true
+        } else {
+            collectionView.isHidden = false
         }
     }
     
@@ -185,12 +189,13 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let viewModel = presenter?.searchViewModel else {
-            fatalError("CollectionView numberOfItems not configured correctly")
+        guard let viewModel = presenter?.searchViewModel,
+            let imageUrl = try? viewModel.imageUrl(at: indexPath.item) else {
+                fatalError("CollectionView numberOfItems not configured correctly")
         }
         
         let cell = collectionView.dequeueReusableCell(for: indexPath) as PhotoCollectionViewCell
-        cell.configure(imageURL: viewModel.imageUrl(at: indexPath.item), indexPath: indexPath)
+        cell.configure(imageURL: imageUrl, indexPath: indexPath)
         return cell
     }
     
@@ -227,11 +232,12 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let viewModel = presenter?.searchViewModel else { return }
-        guard viewState != .loading, !viewModel.isEmpty else {
-            return
+        guard viewState != .loading,
+            !viewModel.isEmpty,
+            let imageUrl = try? viewModel.imageUrl(at: indexPath.row) else {
+                return
         }
-        let imageURL = viewModel.imageUrl(at: indexPath.row)
-        EasyImage.shared.changeDownloadPriority(for: imageURL)
+        EasyImage.shared.changeDownloadPriority(for: imageUrl)
     }
     
     //MARK: UICollectionViewDelegate

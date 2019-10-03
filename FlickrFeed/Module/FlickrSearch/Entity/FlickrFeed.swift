@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// The root of the Flickr Search API response JSON
 struct FlickrFeed : Decodable {
     
     var photos: FlickrResult
@@ -30,7 +31,9 @@ struct FlickrPhoto : Decodable {
     var secret: String
     var server: String
     var farm: Int
-    var title: String
+    
+    /// Doubting whether Flickr API will always return title. Hence, marking it optional
+    var title: String?
     var ispublic: Int
     var isfriend: Int
     var isfamily: Int

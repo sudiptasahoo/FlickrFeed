@@ -19,7 +19,7 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
     
     //MARK: Initialization
     init() {
-        searchViewModel = SearchViewModel(photos: [], totalPage: Defaults.defaultTotalCount, currentPage: Defaults.defaultPageNum)
+        searchViewModel = SearchViewModel.default
     }
     
     //MARK: SearchViewOutput methods
@@ -29,28 +29,25 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
         resetViewModel()
         self.view?.updateViewState(with: .loading)
         self.view?.resetView()
-        self.view?.startLoader()
+        self.view?.startLoader(loadingText: Strings.searchLoaderText + searchTerm)
         interactor.fetchPhotos(with: searchTerm, page: Defaults.firstPage)
     }
     
     func fetchMorePhotos() {
-        DispatchQueue.main.async { [unowned self] in
-            self.view?.updateViewState(with: .loading)
-        }
+        self.view?.updateViewState(with: .loading)
         interactor.fetchPhotos(with: searchTerm, page: searchViewModel.currentPage + 1)
     }
     
     func didSelectPhoto(at index: Int) {
-        router.routeToPhotoDetails(with: searchViewModel.getPhoto(at: index))
+        guard let photo = try? searchViewModel.getPhoto(at: index) else { return }
+        router.routeToPhotoDetails(with: photo)
     }
     
     
     //MARK: SearchInteractorOutput
     func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
         
-        DispatchQueue.main.async {
-            self.view?.stopLoader()
-        }
+        self.view?.stopLoader()
         switch result {
         case .success(let flickrFeed):
             let oldCount = searchViewModel.photoCount
@@ -71,12 +68,15 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
     }
     
     //MARK: Private Methods
+    
+    /// Assigns values from the freshly fetched response to the view model
     private func process(_ flickrFeed: FlickrFeed) {
         searchViewModel.append(flickrFeed.photos.photo)
         searchViewModel.currentPage = flickrFeed.photos.page
         searchViewModel.totalPage = flickrFeed.photos.pages
     }
     
+    /// Resets the View Model to its default values
     private func resetViewModel() {
         searchViewModel.reset()
     }
