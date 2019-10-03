@@ -53,8 +53,12 @@ final class SearchPresenterInputMock: SearchInteractorOutput {
             flickrSuccessCalled = true
             XCTAssertFalse(feed.photos.photo.isEmpty)
             
-        default:
+        case .failure(let error as AppError):
             flickrFailureCalled = true
+            XCTAssertNotNil(error.localizedDescription)
+            
+        case .failure(_):
+            XCTFail("Only AppError was expected here")
         }
     }
 }

@@ -19,7 +19,7 @@ struct EasyCache {
         self.cache = cache
     }
     
-    func addImageData(cacheData: CachedURLResponse, key: URLRequest) {
+    func addImage(cacheData: CachedURLResponse, key: URLRequest) {
         self.cache.storeCachedResponse(cacheData, for: key)
     }
     
@@ -30,11 +30,11 @@ struct EasyCache {
         return nil
     }
     
-    func clearAllCache() {
-        URLCache.shared.removeAllCachedResponses()
+    func invalidateAllCache() {
+        cache.removeAllCachedResponses()
     }
     
-    func clearAllCache(for imageUrl: URL) {
-        URLCache.shared.removeCachedResponse(for: URLRequest(url: imageUrl))
+    func invalidateCache(for imageUrl: URL) {
+        cache.removeCachedResponse(for: URLRequest(url: imageUrl))
     }
 }

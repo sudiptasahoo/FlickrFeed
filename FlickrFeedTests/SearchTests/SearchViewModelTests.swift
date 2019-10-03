@@ -64,6 +64,18 @@ final class SearchViewModelTests: XCTestCase {
         //4 photos are being inserted
         viewModel.append(MockUtil.shared.mockPhotos)
         XCTAssertThrowsError(try viewModel.getPhoto(at: 4))
+        
+        do {
+            _ = try viewModel.getPhoto(at: 4)
+        } catch let error as AppError {
+            guard case AppError.photoError(.noPhotoPresent) = error else {
+                XCTFail("Only AppError.photoError(.noPhotoPresent) was expected here")
+                return
+            }
+        } catch {
+            XCTFail("Only AppError was expected here")
+        }
+        
         XCTAssertThrowsError(try viewModel.imageUrl(at: 5))
         XCTAssertNoThrow(try viewModel.imageUrl(at: 3))
         XCTAssertNoThrow(try viewModel.getPhoto(at: 2))

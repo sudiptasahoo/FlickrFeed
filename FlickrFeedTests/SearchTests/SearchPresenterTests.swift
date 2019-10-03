@@ -42,86 +42,41 @@ final class SearchPresenterTests: XCTestCase {
         network = nil
     }
     
-    func testSearchMethodCall() {
+    func test1SearchMethodCall() {
         let expect  = expectation(description: "Async Task Expectation")
         view.postRendered = { () -> Void in
             expect.fulfill()
         }
 
-        presenter.fetchPhotos(with: "car")
+        presenter.fetchPhotosWithNew("car")
         waitForExpectations(timeout: 60) { (error) in
             XCTAssertTrue(self.view.showFlickrImages)
             XCTAssertNotNil(self.presenter.searchViewModel)
             XCTAssertTrue(self.presenter.searchViewModel.photoCount == 3)
         }
     }
+    
+    func test2MorePhotosFetchCall() {
+        let expect  = expectation(description: "Async Task Expectation")
+        view.postRendered = { () -> Void in
+            expect.fulfill()
+        }
+
+        presenter.fetchMorePhotos()
+        waitForExpectations(timeout: 60) { (error) in
+            XCTAssertTrue(self.view.showFlickrImages)
+            XCTAssertNotNil(self.presenter.searchViewModel)
+            XCTAssertTrue(self.presenter.searchViewModel.photoCount == 3)
+            XCTAssertNotNil(try? self.presenter.searchViewModel.imageUrl(at: 2))
+        }
+    }
         
-    func testDidSelectPhotoCall() {
-        presenter.fetchPhotos(with: "car")
+    func test3DidSelectPhotoCall() {
+        presenter.fetchPhotosWithNew("car")
         presenter.didSelectPhoto(at: 0)
         XCTAssertTrue(router.showFlickrPhotoDetailsCalled)
     }
 }
-
-//May be useful for future test cases
-//final class SearchPresenterMock: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
-//
-//    weak var view: SearchViewInput?
-//    var interactor: SearchInteractorInput!
-//    var router: SearchRouterInput!
-//    var searchViewModel: SearchViewModel!
-//
-//    var flickrSearchSuccess = false
-//    var selectedPhoto = false
-//
-//    var searchPhotoSuccess = false
-//    var searchPhotoFailure = false
-//
-//    var searchText = ""
-//
-//    func fetchPhotos(with searchTerm: String) {
-//        searchText = searchTerm
-//        interactor.fetchPhotos(with: searchTerm, page: 1)
-//    }
-//
-//    func fetchMorePhotos() {
-//        interactor.fetchPhotos(with: searchText, page: searchViewModel.currentPage+1)
-//    }
-//
-//    func fetchPhotoUrl(with photos: [FlickrPhoto]) -> [URL] {
-//        return photos.compactMap { (photo) -> URL? in
-//            let url = "https://farm\(photo.farm).staticflickr.com.com/\(photo.server)/\(photo.id)_\(photo.secret).jpg"
-//            guard let imageUrl = URL(string: url) else {
-//                return nil
-//            }
-//            return imageUrl
-//        }
-//    }
-//
-//    func fetchPhotoCompleted(with result: Result<FlickrFeed, Error>) {
-//
-//        switch result {
-//
-//        case .success(let flickrFeed):
-//            flickrSearchSuccess = true
-//            XCTAssertFalse(flickrFeed.photos.photo.isEmpty)
-//            let photoUrlList = fetchPhotoUrl(with: flickrFeed.photos.photo)
-//            let viewModel = SearchViewModel(photos: photoUrlList, totalPage: flickrFeed.photos.pages, currentPage: flickrFeed.photos.page)
-//            self.searchViewModel = viewModel
-//            view?.updateViewState(with: .rendering)
-//
-//        case .failure(let error):
-//            searchPhotoFailure = true
-//            view?.updateViewState(with: .error(message: error.localizedDescription))
-//        }
-//    }
-//
-//    func didSelectPhoto(at index: Int) {
-//        selectedPhoto = true
-//    }
-//}
-
-
 
 final class SearchInteractorMock: SearchInteractorInput {
 
@@ -147,8 +102,6 @@ final class SearchInteractorMock: SearchInteractorInput {
             }
         })
     }
-
-
 }
 
 final class SearchViewControllerMock: UIViewController, SearchViewInput {

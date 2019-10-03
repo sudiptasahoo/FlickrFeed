@@ -24,7 +24,7 @@ final class SearchPresenter: SearchViewOutput, SearchModuleInput, SearchInteract
     
     //MARK: SearchViewOutput methods
     
-    func fetchPhotos(with searchTerm: String) {
+    func fetchPhotosWithNew(_ searchTerm: String) {
         self.searchTerm = searchTerm
         resetViewModel()
         self.view?.updateViewState(with: .loading)

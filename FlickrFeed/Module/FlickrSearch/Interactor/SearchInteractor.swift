@@ -30,8 +30,10 @@ final class SearchInteractor: SearchInteractorInput {
             switch result{
             case .success(let flickrFeed):
                 self.presenter.fetchPhotoCompleted(with: .success(flickrFeed))
+            case .failure(let error as NetworkError):
+                self.presenter.fetchPhotoCompleted(with: .failure(AppError.networkError(error)))
             case .failure(let error):
-                self.presenter.fetchPhotoCompleted(with: .failure(error))
+                self.presenter.fetchPhotoCompleted(with: .failure(AppError.unknownError(message: error.localizedDescription)))
             }
         }
     }

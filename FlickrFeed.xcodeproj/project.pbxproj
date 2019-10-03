@@ -72,7 +72,6 @@
 		016F9250234425AF0049A980 /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F924E234425AF0049A980 /* NetworkingTests.swift */; };
 		016F9252234426D50049A980 /* UIImageView+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F9251234426D50049A980 /* UIImageView+Cache.swift */; };
 		01DFCA5E233FB35D00DECB81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */; };
-		01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */; };
 		01DFCA67233FB35F00DECB81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA66233FB35F00DECB81 /* Assets.xcassets */; };
 		01DFCA6A233FB35F00DECB81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01DFCA68233FB35F00DECB81 /* LaunchScreen.storyboard */; };
 		01DFCA80233FB35F00DECB81 /* FlickrFeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DFCA7F233FB35F00DECB81 /* FlickrFeedUITests.swift */; };
@@ -221,7 +220,6 @@
 		016F9251234426D50049A980 /* UIImageView+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Cache.swift"; sourceTree = "<group>"; };
 		01DFCA5A233FB35D00DECB81 /* Flickr Feed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flickr Feed.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		01DFCA66233FB35F00DECB81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01DFCA69233FB35F00DECB81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01DFCA6B233FB35F00DECB81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -567,7 +565,6 @@
 			children = (
 				013FDCE12344032A00A24022 /* AppRouter.swift */,
 				01DFCA5D233FB35D00DECB81 /* AppDelegate.swift */,
-				01DFCA5F233FB35D00DECB81 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1031,7 +1028,6 @@
 				016048542344CB6300259327 /* SearchResultController.swift in Sources */,
 				013FDCE22344032A00A24022 /* AppRouter.swift in Sources */,
 				013F034423459465002E29E8 /* AppError.swift in Sources */,
-				01DFCA60233FB35D00DECB81 /* SceneDelegate.swift in Sources */,
 				013FDC982342A05F00A24022 /* FlickrAPI.swift in Sources */,
 				013FDCCE2343E4B800A24022 /* SearchModuleBuilder.swift in Sources */,
 			);
@@ -1435,7 +1431,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = FlickrFeed/SupportFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1455,7 +1451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 298428699Q;
 				INFOPLIST_FILE = FlickrFeed/SupportFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

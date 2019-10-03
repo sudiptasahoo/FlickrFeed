@@ -39,7 +39,7 @@ protocol SearchViewOutput: class {
 
     /// Fetch Photos with the supplied FRESH search term
     /// - Parameter searchTerm: Search term entered by the user
-    func fetchPhotos(with searchTerm: String)
+    func fetchPhotosWithNew(_ searchTerm: String)
     
     /// Fetches incremental pages
     func fetchMorePhotos()

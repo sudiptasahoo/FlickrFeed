@@ -15,9 +15,9 @@ final class ImageOperation: Operation {
     
     public let imageURL: URL
     private var downloadTask: URLSessionDataTask?
-    private var cache: URLCache
+    private var cache: EasyCache
     
-    init(imageURL: URL, completion: @escaping FetchImageCompletion, cache: URLCache = .shared) {
+    init(imageURL: URL, completion: @escaping FetchImageCompletion, cache: EasyCache = .shared) {
         self.imageURL = imageURL
         self.imageDownloadCompletionHandler = completion
         self.cache = cache
@@ -110,10 +110,10 @@ final class ImageOperation: Operation {
                 
                 if let data = data, let response = response, ((response as? HTTPURLResponse)?.statusCode ?? 500) < 300, let image = UIImage(data: data) {
                     let cachedData = CachedURLResponse(response: response, data: data)
-                    self.cache.storeCachedResponse(cachedData, for: request)
-                    self.imageDownloadCompletionHandler(image, .online)
+                    self.cache.addImage(cacheData: cachedData, key: request)
+                    self.imageDownloadCompletionHandler(self.imageURL, image, .online)
                 } else{
-                    self.imageDownloadCompletionHandler(nil, .cache)
+                    self.imageDownloadCompletionHandler(self.imageURL, nil, .cache)
                 }
                 self.finish()
             })

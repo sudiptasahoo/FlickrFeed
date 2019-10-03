@@ -40,11 +40,7 @@ final class SearchViewController: UIViewController {
         let searchVC = SearchResultController()
         searchVC.searchDelegate = self
         let controller = UISearchController(searchResultsController: searchVC)
-        if #available(iOS 11, *) {
-            controller.obscuresBackgroundDuringPresentation = true
-        } else {
-            controller.dimsBackgroundDuringPresentation = true
-        }
+        controller.obscuresBackgroundDuringPresentation = true
         controller.searchResultsUpdater = nil
         controller.searchBar.placeholder = Strings.searchPlaceholder
         controller.searchBar.delegate = searchVC
@@ -91,25 +87,16 @@ final class SearchViewController: UIViewController {
     
     //Configure Views and subviews
     private func setupViews() {
-        automaticallyAdjustsScrollViewInsets = false
         navigationItem.title = Strings.searchVcTitle
         view.addSubview(collectionView)
-        if #available(iOS 11.0, *) {
-            collectionView.contentInsetAdjustmentBehavior = .never
-        }
         configureSearchController()
     }
     
     //MARK: configureSearchController
     private func configureSearchController() {
-        
-        if #available(iOS 11, *) {
-            navigationItem.searchController = searchController
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationItem.hidesSearchBarWhenScrolling = false
-        } else {
-            navigationItem.titleView = searchController.searchBar
-        }
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = false
     }
     
@@ -258,7 +245,7 @@ extension SearchViewController : SearchResultControllerDelegate {
             searchController.isActive = false
             searchController.searchBar.text = searchText
             
-            presenter?.fetchPhotos(with: searchText)
+            presenter?.fetchPhotosWithNew(searchText)
         }
     }
 }

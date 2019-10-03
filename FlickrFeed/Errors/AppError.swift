@@ -13,6 +13,7 @@ import EasyNetworking
 enum AppError: Swift.Error {
     case photoError(PhotoError)
     case networkError(NetworkError)
+    case unknownError(message: String?)
 }
 
 extension AppError: LocalizedError {
@@ -23,6 +24,8 @@ extension AppError: LocalizedError {
             return error.errorDescription
         case .networkError( _):
             return Errors.networkErrorMessage
+        case .unknownError(let message):
+            return message ?? Errors.networkErrorMessage
         }
     }
     

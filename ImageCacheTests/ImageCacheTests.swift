@@ -12,7 +12,7 @@ import XCTest
 final class ImageCacheTests: XCTestCase {
 
     let url = "https://images.pexels.com/photos/39803/pexels-photo-39803.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=1&w=500"
-    let cache = URLCache.shared
+
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,12 +22,12 @@ final class ImageCacheTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testFirstFetch() {
+    func test1FirstFetch() {
         
         let expect = expectation(description: "Untill the image is fetched from the server")
         var image: UIImage?
         var source: ImageFetchSource?
-        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (dImage, dSource) in
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (url, dImage, dSource) in
             image = dImage
             source = dSource
             expect.fulfill()
@@ -41,12 +41,12 @@ final class ImageCacheTests: XCTestCase {
         }
     }
 
-    func testSecondFetch() {
+    func test2SecondFetch() {
         
         let expect = expectation(description: "Untill the image is fetched from the server")
         var image: UIImage?
         var source: ImageFetchSource?
-        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (dImage, dSource) in
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (url, dImage, dSource) in
             image = dImage
             source = dSource
             expect.fulfill()
@@ -59,6 +59,45 @@ final class ImageCacheTests: XCTestCase {
             XCTAssertEqual(source, ImageFetchSource.cache)
         }
     }
-
+    
+    func test3ClearCache() {
+        
+        let expect = expectation(description: "Untill the image is fetched from the server")
+        var image: UIImage?
+        var source: ImageFetchSource?
+        EasyImage.shared.clearCache(for: URL(string: url)!)
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (url, dImage, dSource) in
+            image = dImage
+            source = dSource
+            expect.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60) { (error) in
+            
+            XCTAssertNotNil(image)
+            XCTAssertNotNil(source)
+            XCTAssertEqual(source, ImageFetchSource.online)
+        }
+    }
+    
+    func test4ClearAllCache() {
+        
+        let expect = expectation(description: "Untill the image is fetched from the server")
+        var image: UIImage?
+        var source: ImageFetchSource?
+        EasyImage.shared.clearAllCache()
+        EasyImage.shared.downloadImage(withURL: URL(string: url)!) { (url, dImage, dSource) in
+            image = dImage
+            source = dSource
+            expect.fulfill()
+        }
+        
+        waitForExpectations(timeout: 60) { (error) in
+            
+            XCTAssertNotNil(image)
+            XCTAssertNotNil(source)
+            XCTAssertEqual(source, ImageFetchSource.online)
+        }
+    }
 }
 

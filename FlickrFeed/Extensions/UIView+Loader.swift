@@ -34,6 +34,7 @@ extension UIView {
                 label.translatesAutoresizingMaskIntoConstraints = false
                 label.font = UIFont.systemFont(ofSize: 20)
                 label.numberOfLines = 0
+                label.textColor = .purple
                 label.textAlignment = .center
                 loaderView.contentView.addSubview(label)
                 

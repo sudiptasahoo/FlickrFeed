@@ -14,7 +14,7 @@ public enum ImageFetchSource{
     case online
 }
 
-typealias FetchImageCompletion =  (_ image:  UIImage?, _ source: ImageFetchSource) -> Void
+typealias FetchImageCompletion =  (_ url: URL, _ image:  UIImage?, _ source: ImageFetchSource) -> Void
 
 public final class EasyImage {
         
@@ -36,7 +36,7 @@ public final class EasyImage {
     func downloadImage(withURL imageURL: URL, completion: @escaping FetchImageCompletion) {
         
         if let image = self.cache.getImage(key: URLRequest(url: imageURL)) {
-            completion(image, .cache)
+            completion(imageURL, image, .cache)
         } else if let existingImageOperations = downloadQueue.operations as? [ImageOperation],
             let imgOperation = existingImageOperations.first(where: {
                 return ($0.imageURL == imageURL) && $0.isExecuting && !$0.isFinished
@@ -74,10 +74,10 @@ public final class EasyImage {
     }
     
     public func clearAllCache() {
-        cache.clearAllCache()
+        cache.invalidateAllCache()
     }
     
-    public func clearAllCache(for imageUrl: URL) {
-        cache.clearAllCache(for: imageUrl)
+    public func clearCache(for imageUrl: URL) {
+        cache.invalidateCache(for: imageUrl)
     }
 }

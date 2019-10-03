@@ -9,9 +9,20 @@
 import Foundation
 import UIKit
 
+private var imageURLKey: Void?
+
 public extension UIImageView{
     
     static let FADE_DURATION = 0.25
+    
+    private var imageURL: String? {
+        get {
+            return objc_getAssociatedObject(self, &imageURLKey) as? String
+        }
+        set {
+            objc_setAssociatedObject(self, &imageURLKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
     
     /// Loads image from web asynchronosly and returns the image from the cache, if available
     func easy_setImage(_ url: URL?, _ placeHolderImage: UIImage? = nil){
@@ -20,9 +31,12 @@ public extension UIImageView{
         
         guard let url = url else {return}
         
-        EasyImage.shared.downloadImage(withURL: url) {[weak self, tag] (image, source) in
+        //Setting this for future use, after image is downloaded from the server
+        imageURL = url.absoluteString
+        
+        EasyImage.shared.downloadImage(withURL: url) {[weak self] (url, image, source) in
             
-            if let image = image, let strongSelf = self {
+            if let image = image, let strongSelf = self, url.absoluteString == strongSelf.imageURL {
                 
                 switch source {
                 //Images from cache should not animate
@@ -31,9 +45,7 @@ public extension UIImageView{
                 //Images fetched from web freshly should animate
                 case .online:
                     DispatchQueue.main.async {
-                        if tag == strongSelf.tag {
-                            strongSelf.setImage(image, animated: true)
-                        }
+                        strongSelf.setImage(image, animated: true)
                     }
                 }
             }
